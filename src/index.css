@@ -7,7 +7,80 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  height: 100vh;
+  width: 100vw;
+} 
+
+.nav-bar {
+  position: relative;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  background: #fffcf7;
+  justify-content: space-between;
+  /* outline: 2px solid #161d1d; */
+  border-bottom: 2px solid #161d1d;
 }
+
+.menuBtn {
+  position: relative;
+  left: 8px;
+  font-size: 30px;
+  display: flex;
+  color: #161d1d;
+  padding: 3px;
+  /* outline: 1px solid red; */
+  cursor: pointer;
+}
+
+.menuBtn:hover, .searchBtn:hover {
+  background: #ebebeb;
+  transition: .1s linear;
+}
+
+.searchbarCntr {
+  position: relative;
+  right: 12px;
+  width: 14rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  outline: 2px solid #161d1d;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.searchbar {
+  position: relative;
+  font-size: 17px;
+  width: 85%;
+  height: 100%;
+  padding: 5px;
+  border: none;
+  background: transparent;
+}
+
+.searchbar::placeholder {
+  color: #161d1d;
+}
+
+.searchBtn {
+  position: relative;
+  font-size: 25px;
+  padding: 10px 5px;
+  display: flex;
+  outline: 2px solid #161d1d;
+  cursor: pointer;
+}
+
+/* container">
+        
+        <div className='nav-bar'>
+          <div className='menuBtn'><AiOutlineMenu className='icon'/></div>
+        
+          <div className='searchbarCntr'>
+            <input className='searchbar' type='text' placeholder='Search Exercise'/>
+
+            <div className='searchBtn'><AiOutlineSearch className='logo'/></div>
+          </div> */
