@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee&family=Roboto:wght@400;500;700;900&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,6 +12,8 @@ body {
 .container {
   height: 100vh;
   width: 100vw;
+  color: #161d1d;
+  overflow: hidden;
 } 
 
 .nav-bar {
@@ -34,7 +38,7 @@ body {
   cursor: pointer;
 }
 
-.menuBtn:hover, .searchBtn:hover {
+.menuBtn:hover, .searchBtn:hover, .returnBtn:hover {
   background: #ebebeb;
   transition: .1s linear;
 }
@@ -74,13 +78,105 @@ body {
   cursor: pointer;
 }
 
-/* container">
-        
-        <div className='nav-bar'>
-          <div className='menuBtn'><AiOutlineMenu className='icon'/></div>
-        
-          <div className='searchbarCntr'>
-            <input className='searchbar' type='text' placeholder='Search Exercise'/>
+/* -- SIDEBAR  STYLES -- */
 
-            <div className='searchBtn'><AiOutlineSearch className='logo'/></div>
-          </div> */
+.sidebar {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #fffcf7;
+  outline: 1px solid  red;
+}
+
+.logoReturnBtnCntr {
+  position: relative;
+  /* top: 1rem; */
+  width: 100%;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: 1px solid red;
+}
+
+.logoApp {
+  position: relative;
+  left: 10px;
+  font-size: 22px;
+  font-family: 'Bungee';
+}
+
+.returnBtn {
+  position: relative;
+  right: 10px;
+  font-size: 25px;
+  display: flex;
+  padding: 5px;
+  /* outline: 1px solid red; */
+  cursor: pointer;
+}
+
+.bodypartBtn, .targetareasBtn, .equipmentBtn, .savedExercisesBtn {
+  position: relative;
+  top: 1rem;
+  width: 100%;
+  height: 100px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+  padding: 2px 0px;
+  /* outline: 1px solid red; */
+  cursor: pointer;
+}
+
+.bodypartBtn.active, .targetareasBtn.active, .equipmentBtn.active, .savedExercisesBtn.active {
+  text-decoration: underline;  
+}
+
+.itemsViewCntr {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ebebeb;
+  outline: 1px solid red;
+}
+
+.indItem {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* font-size: 16px; */
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 2px;
+  /* padding: 10px 0px; */
+  /* outline: 1px solid red; */
+}
+
+.indItem:hover {
+  text-decoration: underline;
+  transition: .1s linear;
+}
+
+/*
+'sidebar'>
+
+   'bodypartBtn'>Bodyparts</p>
+
+            <div className='itemsViewCntr'>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+            </div>
+
+      
+*/
