@@ -69,13 +69,13 @@ class App extends Component {
 
         {/* <IndExercise /> */}
 
-        {/* <SavedCategory /> */}
+        <SavedCategory />
 
-        <div className='previewMSGcntr'>
+        {/* <div className='previewMSGcntr'>
           <p className='previewMSG'>
             Search exercise through searchbar or use sidebar in order to view lists of exercises.
           </p>
-        </div>
+        </div> */}
 
       </div>
     );

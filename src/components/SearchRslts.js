@@ -8,7 +8,7 @@ const SearchRslts = () => {
         
             <div className='rsltsItemsCntr'>
                 <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise adkjfhaskd fklashdfkjashd lasuhdflkjahsd falksjdhfk,ajshd fklasdf klajshdflkajshydf aalskdjfhaksjdhfa sdfhskjdhfkjuaydfgskjaghsdfghjagsdgfjagjsdfgjagsdjhf</p>
+                    <p className='exerciseName'>Exercise </p>
 
 
                     <div className='gifOfExercise'>

@@ -25,7 +25,7 @@ const IndExercise = () => {
 
             <p className='saveNewCat'>Save To New Category</p>
 
-            <div className='createNewCatCntr'>
+            {/* <div className='createNewCatCntr'>
                 <div className='elmntsCntr'>
                     <p className='createNewCatHeading'>Create Category</p>
 
@@ -37,7 +37,7 @@ const IndExercise = () => {
         
                     <p className='cancelBtn'>Cancel</p>
                 </div>
-            </div>
+            </div> */}
 
 
         </div>

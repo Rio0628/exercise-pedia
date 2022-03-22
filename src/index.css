@@ -96,15 +96,12 @@ body {
 .previewMSG {
   position: relative;
   top: 5rem;
+  width: 90%;
   font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
   outline: 1px solid red;
 }
-
-/* /* e='previewMSGcntr'>
-          <p className='previewMSG'> */
- */
 
 /* -- SIDEBAR  STYLES -- */
 
@@ -470,7 +467,10 @@ body {
 
 
 @media screen and (min-width: 400px) {
-  .container {
-    /* background: red; */
-  }
+  .searchbarCntr { width: 18rem; }
+
+  .searchBtn { padding: 10px; }
+
+  .indExerciseGif { width: 20rem; }
+
 }
