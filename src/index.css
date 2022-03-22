@@ -353,7 +353,7 @@ body {
 .elmntsCntr {
   position: relative;
   top: 5rem;
-  min-height: 22rem;
+  min-height: 24rem;
   width: 18rem;
   display: flex;
   flex-direction: column;
@@ -394,11 +394,6 @@ body {
 }
 
 .descriptionInp::placeholder { color: #161d1d; }
-
-/* .descriptionInp {
-  position: relative;
-  outline: 1px solid #161d1d;
-} */
 
 .createBtn, .cancelBtn  {
   position: relative;
@@ -472,5 +467,22 @@ body {
   .searchBtn { padding: 10px; }
 
   .indExerciseGif { width: 20rem; }
+}
+
+@media screen and (min-width: 650px) {
+  .rsltsItemsCntr {
+    width: 35rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .indRsltItem { width: 48%; }
+
+  .elmntsCntr { width: 25rem; }
+
+  .createNewCatHeading { font-size: 24px; }
+
+  .descriptionCategory { width: 35rem; }
+
 
 }

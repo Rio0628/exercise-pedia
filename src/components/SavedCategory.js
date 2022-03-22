@@ -25,6 +25,22 @@ const SavedCategory = () => {
                     <p className='exerciseTarget'>Target</p>
                 </div>
 
+                <div className='indRsltItem'>
+                    
+                    <div className='exerciseNameBtnCntr'>
+                        <p className='exerciseName'>Exercise</p>
+
+                        <div className='removeBtn'><RiDeleteBin7Fill className='logo' /></div>
+                    </div>
+
+
+                    <div className='gifOfExercise'>
+
+                    </div>
+
+                    <p className='exerciseTarget'>Target</p>
+                </div>
+
             </div>
         </div>
     );
