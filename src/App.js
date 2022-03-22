@@ -20,7 +20,7 @@ class App extends Component {
 
         </div>
 
-        {/* <div className='sidebar'>
+        <div className='sidebar'>
 
           <div className='logoReturnBtnCntr'>
             <p className='logoApp'>Exercise Pedia</p>
@@ -55,7 +55,7 @@ class App extends Component {
             <p className='indItem'>Item</p>
           </div>
 
-          <p className='savedExercisesBtn'>Saved Exercises</p>
+          <p className='savedCategoriesBtn'>Saved Categories</p>
 
           <div className='itemsViewCntr' id='lastCntr'>
             <p className='indItem'>Item</p>
@@ -63,7 +63,7 @@ class App extends Component {
             <p className='indItem'>Item</p>
             <p className='indItem'>Item</p>
           </div>
-        </div> */}
+        </div>
         
         {/* <SearchRslts /> */}
 
