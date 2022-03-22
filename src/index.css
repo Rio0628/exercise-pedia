@@ -311,33 +311,83 @@ body {
   /* padding-bottom: 20rem; */
 }
 
-.saveExercise:hover, .saveNewCat:hover {
+.saveExercise:hover, .saveNewCat:hover, .createBtn:hover, .cancelBtn:hover {
   background: #ebebeb;
   outline: none;
   transition: .1s linear;
 }
 
+.createNewCatCntr {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fffcf7;
+  /* background: rgba(23, 23, 23, .6); */
+}
+
+.elmntsCntr {
+  position: relative;
+  top: 5rem;
+  height: 17rem;
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  outline: 2px solid #161d1d;
+  border-radius: 2px;
+}
+
+.createNewCatHeading {
+  position: relative;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  /* outline: 1px solid red; */
+}
+
+.categoryInp {
+  position: relative;
+  top: .5rem;
+  width: 80%;
+  font-size: 18px;
+  /* font-weight: 600; */
+  padding: 7px 5px;
+  border: none;
+  border-radius: 2px;
+  outline: 1px solid #161d1d;
+}
+
+.categoryInp::placeholder { color: #161d1d; }
+
+.createBtn, .cancelBtn  {
+  position: relative;
+  top: 1.5rem;
+  width: 80%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+  outline: 1px solid #161d1d;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.cancelBtn { top: .5rem; }
+
 /*
-indExercise'>
-            <h3 className='indExerciseName'>Exercise</h3>
 
-            <div className='indExerciseGif'></div>
+            <div className='createNewCatCntr'>
+                <div className='elmntsCntr'>
+                    <p className='createNewCatHeading'>Create Category</p>
 
-            <p className='exerciseBodyPart'>Body Part Exercise</p>
+                    <input className='categoryInp' type='text' placeholder='category'/>
 
-            <p className='exerciseTargetArea'>Target Exercise</p>
-
-            <p className='exerciseEquipment'>Equipment Exercise</p>
-
-            <div className='saveExerciseCntr'>
-                <select className='selectCat'>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-
-                <p className='saveExercise'>Save</p>
-            </div>
-
-            <p className='saveNewCat'>S
+                    <p className='createBtn'>Create</p>
+        
+                    <p className='cancelBtn'>
 */
