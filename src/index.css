@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   /* background: red; */
-} 
+}
 
 .nav-bar {
   position: relative;
@@ -81,6 +81,31 @@ body {
   cursor: pointer;
 }
 
+/* -- PREVIEW MESSAGE STYLING -- */
+
+.previewMSGcntr {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  /* background: yellow; */
+}
+
+.previewMSG {
+  position: relative;
+  top: 5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  outline: 1px solid red;
+}
+
+/* /* e='previewMSGcntr'>
+          <p className='previewMSG'> */
+ */
+
 /* -- SIDEBAR  STYLES -- */
 
 .sidebar {
@@ -139,7 +164,7 @@ body {
 }
 
 .bodypartBtn.active, .targetareasBtn.active, .equipmentBtn.active, .savedCategoriesBtn.active {
-  text-decoration: underline;  
+  text-decoration: underline;
 }
 
 .itemsViewCntr {
@@ -230,8 +255,10 @@ body {
   position: relative;
   text-align: center;
   font-size: 19px;
+  width: 90%;
   font-weight: 800;
   letter-spacing: 2px;
+  overflow: hidden;
   outline: 1px solid red;
 }
 
@@ -264,7 +291,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   text-align: center;
-  outline: 1px solid red; 
+  outline: 1px solid red;
 }
 
 .saveExerciseCntr {
@@ -389,7 +416,7 @@ body {
   cursor: pointer;
 }
 
-.cancelBtn { 
+.cancelBtn {
   top: .2rem;
   /* bottom: 2rem;  */
 }
@@ -398,12 +425,12 @@ body {
 
 .descriptionCategory {
   position: relative;
-  width: 18rem;
+  width: 19rem;
   min-height: 2rem;
   text-align: center;
   overflow: hidden;
   font-weight: 500;
-  outline: 1px solid red; 
+  outline: 1px solid red;
   margin-bottom: 2rem;
 }
 
@@ -418,13 +445,12 @@ body {
 
 .exerciseNameBtnCntr .exerciseName {
   width: 80%;
-  overflow: hidden;
   text-align: left;
 }
 
 .removeBtn {
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 0px;
   font-size: 2rem;
   display: flex;
@@ -442,3 +468,9 @@ body {
   transition: none;
 }
 
+
+@media screen and (min-width: 400px) {
+  .container {
+    /* background: red; */
+  }
+}

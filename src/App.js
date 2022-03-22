@@ -67,9 +67,15 @@ class App extends Component {
         
         {/* <SearchRslts /> */}
 
-        <IndExercise />
+        {/* <IndExercise /> */}
 
         {/* <SavedCategory /> */}
+
+        <div className='previewMSGcntr'>
+          <p className='previewMSG'>
+            Search exercise through searchbar or use sidebar in order to view lists of exercises.
+          </p>
+        </div>
 
       </div>
     );
