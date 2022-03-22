@@ -174,7 +174,7 @@ body {
 
 /* -- SEARCH RESULTS STYLES -- */
 
-.searchRslts, .indExercise {
+.searchRslts, .indExercise, .savedCategory {
   position: relative;
   min-height: 100%;
   width: 100%;
@@ -186,7 +186,7 @@ body {
   outline: 1px solid red;
 }
 
-.searchRsltsHeading, .indExerciseName {
+.searchRsltsHeading, .indExerciseName, .savedCategoryHeading {
   position: relative;
   text-align: center;
   font-size: 20px;
@@ -244,17 +244,14 @@ body {
 
 .gifOfExercise {
   position: relative;
-  height: 10rem;
+  height: 14rem;
   width: 90%;
   outline: 1px solid red;
 }
 
 /* -- IND EXERCISE STYLES -- */
 
-.indExercise {
-  margin-bottom: 2rem;
-  
-}
+.indExercise { margin-bottom: 2rem; }
 
 .indExerciseGif {
   position: relative;
@@ -379,15 +376,61 @@ body {
 
 .cancelBtn { top: .5rem; }
 
+/* -- SAVED CATEGORY ITEMS STYLING -- */
+
+.exerciseNameBtnCntr {
+  position: relative;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: 1px solid blue;
+}
+
+.exerciseNameBtnCntr .exerciseName {
+  width: 80%;
+  overflow: hidden;
+  text-align: left;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  font-size: 2rem;
+  display: flex;
+  outline: 1px solid red;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  color: #d62828;
+  transition: .1s linear;
+}
+
+.removeBtn:active {
+  background: #161d1d;
+  transition: none;
+}
+
 /*
-
-            <div className='createNewCatCntr'>
-                <div className='elmntsCntr'>
-                    <p className='createNewCatHeading'>Create Category</p>
-
-                    <input className='categoryInp' type='text' placeholder='category'/>
-
-                    <p className='createBtn'>Create</p>
+savedCategory'>
+            <h3 className='searchCategoryHeading'>Category: Something</h3>
         
-                    <p className='cancelBtn'>
+        
+            <div className='rsltsItemsCntr'>
+                <div className='indRsltItem'>
+                    
+                    <div className='exerciseNameBtnCntr'>
+                        <p className='exerciseName'>Exercise</p>
+
+                        <div className='removeBtn'><RiDeleteBack2Fill className='logo' /></div>
+                    </div>
+
+
+                    <div className='gifOfExercise'>
+
+                    </div>
+
+                    <p className='exerciseTarget'>T
 */
