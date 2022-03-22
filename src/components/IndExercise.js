@@ -25,18 +25,19 @@ const IndExercise = () => {
 
             <p className='saveNewCat'>Save To New Category</p>
 
-
-            {/* <div className='createNewCatCntr'>
+            <div className='createNewCatCntr'>
                 <div className='elmntsCntr'>
                     <p className='createNewCatHeading'>Create Category</p>
 
                     <input className='categoryInp' type='text' placeholder='Category Name'/>
 
+                    <textarea className='descriptionInp' type='text' placeholder='Category Description' />
+
                     <p className='createBtn'>Create</p>
         
                     <p className='cancelBtn'>Cancel</p>
                 </div>
-            </div> */}
+            </div>
 
 
         </div>

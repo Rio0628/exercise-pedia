@@ -67,9 +67,9 @@ class App extends Component {
         
         {/* <SearchRslts /> */}
 
-        {/* <IndExercise /> */}
+        <IndExercise />
 
-        <SavedCategory />
+        {/* <SavedCategory /> */}
 
       </div>
     );

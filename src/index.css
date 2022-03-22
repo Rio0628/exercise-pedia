@@ -322,19 +322,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fffcf7;
+  background: #f6f6f6;
   /* background: rgba(23, 23, 23, .6); */
 }
 
 .elmntsCntr {
   position: relative;
   top: 5rem;
-  height: 17rem;
+  min-height: 22rem;
   width: 18rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #fff;
+  overflow: hidden;
   outline: 2px solid #161d1d;
   border-radius: 2px;
 }
@@ -347,19 +348,33 @@ body {
   /* outline: 1px solid red; */
 }
 
-.categoryInp {
+.categoryInp, .descriptionInp {
   position: relative;
-  top: .5rem;
+  /* bottom: .5rem; */
   width: 80%;
-  font-size: 18px;
+  font-size: 17px;
   /* font-weight: 600; */
-  padding: 7px 5px;
+  padding: 5px 5px;
   border: none;
+  background: transparent;
   border-radius: 2px;
   outline: 1px solid #161d1d;
 }
 
 .categoryInp::placeholder { color: #161d1d; }
+
+.descriptionInp {
+  bottom: -1rem;
+  min-height: 5rem;
+  font-family: 'Roboto';
+}
+
+.descriptionInp::placeholder { color: #161d1d; }
+
+/* .descriptionInp {
+  position: relative;
+  outline: 1px solid #161d1d;
+} */
 
 .createBtn, .cancelBtn  {
   position: relative;
@@ -374,9 +389,23 @@ body {
   cursor: pointer;
 }
 
-.cancelBtn { top: .5rem; }
+.cancelBtn { 
+  top: .2rem;
+  /* bottom: 2rem;  */
+}
 
 /* -- SAVED CATEGORY ITEMS STYLING -- */
+
+.descriptionCategory {
+  position: relative;
+  width: 18rem;
+  min-height: 2rem;
+  text-align: center;
+  overflow: hidden;
+  font-weight: 500;
+  outline: 1px solid red; 
+  margin-bottom: 2rem;
+}
 
 .exerciseNameBtnCntr {
   position: relative;
@@ -413,24 +442,3 @@ body {
   transition: none;
 }
 
-/*
-savedCategory'>
-            <h3 className='searchCategoryHeading'>Category: Something</h3>
-        
-        
-            <div className='rsltsItemsCntr'>
-                <div className='indRsltItem'>
-                    
-                    <div className='exerciseNameBtnCntr'>
-                        <p className='exerciseName'>Exercise</p>
-
-                        <div className='removeBtn'><RiDeleteBack2Fill className='logo' /></div>
-                    </div>
-
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>T
-*/

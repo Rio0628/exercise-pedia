@@ -5,7 +5,8 @@ const SavedCategory = () => {
     return (
         <div className='savedCategory'>
             <h3 className='savedCategoryHeading'>Category: Something</h3>
-        
+            
+            <p className='descriptionCategory'>This is the description for the category</p>
         
             <div className='rsltsItemsCntr'>
                 <div className='indRsltItem'>
