@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsArrowBarLeft } from 'react-icons/bs';
-import { SearchRslts } from './components';
+import { SearchRslts, IndExercise } from './components';
 
 class App extends Component {
   render () {
@@ -65,7 +65,9 @@ class App extends Component {
           </div>
         </div> */}
         
-        <SearchRslts />
+        {/* <SearchRslts /> */}
+
+        <IndExercise />
 
       </div>
     );

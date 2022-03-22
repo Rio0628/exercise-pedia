@@ -28,6 +28,39 @@ const SearchRslts = () => {
 
                     <p className='exerciseTarget'>Target</p>
                 </div>
+
+                <div className='indRsltItem'>
+                    <p className='exerciseName'>Exercise</p>
+
+
+                    <div className='gifOfExercise'>
+
+                    </div>
+
+                    <p className='exerciseTarget'>Target</p>
+                </div>
+
+                <div className='indRsltItem'>
+                    <p className='exerciseName'>Exercise</p>
+
+
+                    <div className='gifOfExercise'>
+
+                    </div>
+
+                    <p className='exerciseTarget'>Target</p>
+                </div>
+
+                <div className='indRsltItem'>
+                    <p className='exerciseName'>Exercise</p>
+
+
+                    <div className='gifOfExercise'>
+
+                    </div>
+
+                    <p className='exerciseTarget'>Target</p>
+                </div>
             </div>
         </div>
     );
