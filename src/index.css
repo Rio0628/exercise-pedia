@@ -225,9 +225,7 @@ body {
   outline: 1px solid red;
 }
 
-.indExercise {
-  height: 100%;
-}
+.indExercise { overflow: hidden; }
 
 .searchRsltsHeading, .indExerciseName, .savedCategoryHeading {
   position: relative;
@@ -580,5 +578,12 @@ body {
   }
 
   .indExercise { padding-bottom: 2rem; }
+}
 
+@media screen and (min-width: 1300px) {
+  .rsltsItemsCntr { width: 62rem; }
+
+  .indRsltItem { width: 31%; }
+
+  .previewMSG { width: 60rem; }
 }
