@@ -313,13 +313,15 @@ body {
   outline: 1px solid red;
 }
 
-.exerciseTargetArea { bottom: 1.2rem; }
+.exerciseBodyPart { top: 1rem; }
 
-.exerciseEquipment { bottom: 2.2rem; }
+/* .exerciseTargetArea { bottom: 1.2rem; } */
+
+.exerciseEquipment { bottom: 1rem; }
 
 .saveExerciseCntr {
   position: relative;
-  bottom: 2.2rem;
+  /* bottom: 2.2rem; */
   width: 15rem;
   height: 2rem;
   display: flex;
@@ -351,7 +353,7 @@ body {
 
 .saveNewCat {
   position: relative;
-  bottom: 2.3rem;
+  /* bottom: 2.3rem; */
   outline: 2px solid #161d1d;
   width: 15rem;
   text-align: center;
