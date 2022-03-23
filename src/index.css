@@ -10,13 +10,23 @@ body {
 }
 
 .container {
-  position: relative;
+  /* position: relative; */
   height: 100vh;
   width: 100vw;
   color: #161d1d;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
   /* background: red; */
+}
+
+.mainCntr {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .nav-bar {
@@ -28,6 +38,12 @@ body {
   justify-content: space-between;
   /* outline: 2px solid #161d1d; */
   border-bottom: 2px solid #161d1d;
+}
+
+.nav-bar .logoApp {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .menuBtn {
@@ -89,7 +105,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   /* background: yellow; */
 }
 
@@ -107,7 +123,7 @@ body {
 
 .sidebar {
   position: absolute;
-  top: 0px;
+  top: -4.1rem;
   min-height: 100%;
   width: 100%;
   display: flex;
@@ -118,6 +134,7 @@ body {
   background: #fffcf7;
   outline: 1px solid  red;
   z-index: 9 ;
+  transform: translateX(-100rem);
 }
 
 .logoReturnBtnCntr {
@@ -168,7 +185,7 @@ body {
   position: relative;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   align-items: center;
   background: #ebebeb;
@@ -198,14 +215,18 @@ body {
 
 .searchRslts, .indExercise, .savedCategory {
   position: relative;
-  min-height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
+  overflow-x: hidden;
+  overflow-y: scroll;
   outline: 1px solid red;
+}
+
+.indExercise {
+  height: 100%;
 }
 
 .searchRsltsHeading, .indExerciseName, .savedCategoryHeading {
@@ -222,11 +243,11 @@ body {
   width: 19rem;
   height: 100%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   outline: 1px solid red;
-  padding-bottom: 5rem;
+  /* background: red; */
+  margin-bottom: 40rem;
 }
 
 .indRsltItem {
@@ -275,29 +296,37 @@ body {
 
 /* -- IND EXERCISE STYLES -- */
 
-.indExercise { margin-bottom: 2rem; }
+/* .indExercise { margin-bottom: 2rem; } */
 
 .indExerciseGif {
   position: relative;
-  height: 20rem;
+  height: 18rem;
   width: 18rem;
   outline: 1px solid blue;
 }
 
 .exerciseBodyPart, .exerciseTargetArea, .exerciseEquipment {
+  position: relative;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
   outline: 1px solid red;
 }
 
+.exerciseTargetArea { bottom: 1.2rem; }
+
+.exerciseEquipment { bottom: 2.2rem; }
+
 .saveExerciseCntr {
   position: relative;
+  bottom: 2.2rem;
   width: 15rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   outline: 1px solid green;
+  /* margin-bottom: 20rem; */
 }
 
 .selectCat {
@@ -322,6 +351,7 @@ body {
 
 .saveNewCat {
   position: relative;
+  bottom: 2.3rem;
   outline: 2px solid #161d1d;
   width: 15rem;
   text-align: center;
@@ -329,7 +359,7 @@ body {
   padding: 5px 0px;
   border-radius: 2px;
   cursor: pointer;
-  /* padding-bottom: 20rem; */
+  /* margin-bottom: 20rem; */
 }
 
 .saveExercise:hover, .saveNewCat:hover, .createBtn:hover, .cancelBtn:hover {
@@ -472,6 +502,7 @@ body {
 @media screen and (min-width: 650px) {
   .rsltsItemsCntr {
     width: 35rem;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -483,6 +514,69 @@ body {
   .createNewCatHeading { font-size: 24px; }
 
   .descriptionCategory { width: 35rem; }
+}
 
+@media screen and (min-width: 1000px) {
+
+  .container {
+    overflow: hidden;
+  }
+
+  .nav-bar .logoApp {
+    position: relative;
+    left: 2.5rem;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menuBtn {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .searchbarCntr { width: 20rem; }
+
+  .searchBtn {
+    padding: 10px 15px;
+  }
+
+  .mainCntr {
+    /* top: 19.5rem; */
+    flex-direction: row;
+    /* overflow-y: hidden; */
+  }
+
+  .sidebar {
+    position: relative;
+    height: 100%;
+    top: 0rem;
+    width: 25rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transform: translateX(0px);
+  }
+
+  .logoReturnBtnCntr {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .indExercise {
+    top: .5rem;
+    /* height: 100%; */
+    outline: 1px solid red;
+    /* background: red; */
+    /* top: -19.4rem; */
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+  }
+
+  .savedCategory, .searchRslts {
+    /* top: 15.8rem; */
+    height: 100vh;
+  }
+
+  .indExercise { padding-bottom: 2rem; }
 
 }
