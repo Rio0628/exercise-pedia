@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hello World!' });
 });
 
+require('./server/routes/exercise.routes')(app);
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

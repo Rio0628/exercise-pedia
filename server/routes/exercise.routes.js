@@ -6,4 +6,6 @@ module.exports = app => {
     router.get('/', exercises.findAll);
     router.put('/:id', exercises.update);
     router.delete('/:id', exercises.delete);
+
+    app.use('/api/exercises', router); 
 }
