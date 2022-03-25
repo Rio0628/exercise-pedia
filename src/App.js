@@ -10,35 +10,54 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "mario"
+      text: "mario",
     };
     this.sidebarRef = React.createRef();
     this.sidebarAnim = gsap.timeline({ paused: true });
   }
 
 
-  componentDidMount() {
+  async retrieveSidebarOptions (URL) {
+    let data, options = {
+      method: 'GET',
+      url: URL,
+      headers: {
+        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
+        'X-RapidAPI-Key': 'b3a01735bbmshff0db8d8ae4e31dp101e3cjsnce8522bd9a34'
+      }
+    };
+
+    await axios.request(options).then(function (response) {
+      data = response.data;
+    }).catch(function (error) {
+      console.error(error);
+    });
+
+    // console.log(data)
+    return data;
+  }
+
+  async componentDidMount() {
     // Sidebar appear anim
     this.sidebarAnim.to(this.sidebarRef.current, { opacity: 1, x: 0, duration: 1, ease: 'none'} )
+
+    // Functions calls to retrieve sidebar info
+
+    this.setState({ bodyPartList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
+
+    this.setState({ targetAreaList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
+
+    this.setState({ equipmentList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
+
+    this.setState({ appLoaded: true });
   }
 
   
   render () {
 
-    // let options = {
-    //   method: 'GET',
-    //   url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
-    //   headers: {
-    //     'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
-    //     'X-RapidAPI-Key': 'b3a01735bbmshff0db8d8ae4e31dp101e3cjsnce8522bd9a34'
-    //   }
-    // };
-
-    // axios.request(options).then(function (response) {
-    //   console.log(response.data);
-    // }).catch(function (error) {
-    //   console.error(error);
-    // });
+    // console.log(this.state.bodyPartList);
+    // console.log(this.state.targetAreaList);
+    // console.log(this.state.equipmentList);
 
     return (
       <div className="container">
@@ -71,28 +90,25 @@ class App extends Component {
             <p className='bodypartBtn'>Bodyparts</p>
   
             <div className='itemsViewCntr'>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.bodyPartList.map(item => 
+                <p className='indItem' item={item} key={item}>{item}</p>
+              ) : null}
             </div>
 
             <p className='targetareasBtn'>Target Areas</p>
 
             <div className='itemsViewCntr'>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.targetAreaList.map(item => 
+                <p className='indItem' item={item} key={item}>{item}</p>
+              ) : null}
             </div>
 
             <p className='equipmentBtn'>Equipment</p>
 
             <div className='itemsViewCntr'>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.equipmentList.map(item => 
+                <p className='indItem' item={item} key={item}>{item}</p>
+              ) : null}
             </div>
 
             <p className='savedCategoriesBtn'>Saved Categories</p>
