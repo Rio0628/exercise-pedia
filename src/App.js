@@ -10,14 +10,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "mario",
+      previewView: true,
+      indExerciseView: false,
+      savedCategoryView: false,
+      searchRsltsView: false
     };
     this.sidebarRef = React.createRef();
     this.sidebarAnim = gsap.timeline({ paused: true });
   }
 
 
-  async retrieveSidebarOptions (URL) {
+  async retrieveDBoptions (URL) {
     let data, options = {
       method: 'GET',
       url: URL,
@@ -43,42 +46,27 @@ class App extends Component {
 
     // Functions calls to retrieve sidebar info
 
-    // this.setState({ bodyPartList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
+    // this.setState({ bodyPartList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
 
-    // this.setState({ targetAreaList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
+    // this.setState({ targetAreaList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
 
-    // this.setState({ equipmentList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
+    // this.setState({ equipmentList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
 
     this.setState({ appLoaded: true });
   }
 
   render () {
 
-    const bringBodypartItemsToView = () => {
-      this.setState({ bodypartListInView: !this.state.bodypartListInView });
-      if (this.state.bodypartListInView) { this.bodypartListAnim.play(); }
-      else { this.bodypartListAnim.reverse(); } 
-    }
+    const bringBodypartItemsToView = async (e) => {
+      let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
 
-    const bringTargetareasItemsToView = () => {
-      this.setState({ targetAreaListInView: !this.state.targetAreaListInView });
-      if (this.state.targetAreaListInView) { this.targetAreaListAnim.play(); }
-      else { this.targetAreaListAnim.reverses(); }
+      this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ previewView: false });
+      this.setState({ indExerciseView: false });
+      this.setState({ savedCategoryView: false });
+      this.setState({ searchRsltsView: true });
+      // console.log(items);
     }
-
-    const bringEquipmentItemsToView = () => {
-      this.setState({ equipmentListInView: !this.state.equipmentListInView });
-      if (this.state.equipmentListInView) { this.equipmentListAnim.play(); }
-      else { this.equipmentListAnim.reverse(); }
-    }
-
-    const bringCategoriesItemsToView = () => {
-      this.setState({ categoriesListInView: !this.state.categoriesListInView });
-      if (this.state.categoriesListInView) { this.categoriesListAnim.play(); }
-      else { this.categoriesListAnim.reverse(); }
-    }
-  
-    console.log(this.state.bodypartListInView)
 
     return (
       <div className="container">
@@ -92,7 +80,7 @@ class App extends Component {
           <div className='searchbarCntr'>
             <input className='searchbar' type='text' placeholder='Search Exercise'/>
 
-            <div className='searchBtn'><AiOutlineSearch className='logo'/></div>
+            <div className='searchBtn' onClick={bringBodypartItemsToView}><AiOutlineSearch className='logo'/></div>
           </div>
 
         </div>
@@ -155,17 +143,20 @@ class App extends Component {
             </div>
           </div>
 
-          {/* <SearchRslts /> */}
+          { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems}/> : null }
 
           {/* <IndExercise /> */}
 
           {/* <SavedCategory /> */}
 
-          <div className='previewMSGcntr'>
-          <p className='previewMSG'>
-            Search exercise through searchbar or use sidebar in order to view lists of exercises.
-          </p>
-          </div>
+
+          {this.state.previewView ? 
+            <div className='previewMSGcntr'>
+              <p className='previewMSG'>
+                Search exercise through searchbar or use sidebar in order to view lists of exercises.
+              </p>
+            </div>
+          : null}
 
         </div>
 

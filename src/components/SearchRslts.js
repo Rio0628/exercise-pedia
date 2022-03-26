@@ -1,66 +1,31 @@
 import React from 'react';
 
-const SearchRslts = () => {
+const SearchRslts = (props) => {
+
+    console.log(props.items)
+
     return (
         <div className='searchRslts'>
             <h3 className='searchRsltsHeading'>Search Results: Something</h3>
         
         
             <div className='rsltsItemsCntr'>
-                <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise </p>
+
+                { props.items.map(item => 
+
+                    <div className='indRsltItem' key={item.id} item={item}>
+                        <p className='exerciseName'>{item.name}</p>
 
 
-                    <div className='gifOfExercise'>
+                        <img className='gifOfExercise' alt={'Exercise ' + item.name} src={item.gifUrl}>
 
+                        </img>
+
+                        <p className='exerciseTarget'>{item.target}</p>
                     </div>
 
-                    <p className='exerciseTarget'>Target</p>
-                </div>
+                ) }
 
-                <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise</p>
-
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
-
-                <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise</p>
-
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
-
-                <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise</p>
-
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
-
-                <div className='indRsltItem'>
-                    <p className='exerciseName'>Exercise</p>
-
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
             </div>
         </div>
     );
