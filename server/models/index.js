@@ -16,4 +16,5 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.exercises = require('./exercise.model.js')(sequelize, Sequelize);
+db.categories = require('./category.model.js')(sequelize, Sequelize);
 module.exports = db;
