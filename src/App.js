@@ -23,7 +23,7 @@ class App extends Component {
       url: URL,
       headers: {
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
-        'X-RapidAPI-Key': 'b3a01735bbmshff0db8d8ae4e31dp101e3cjsnce8522bd9a34'
+        'X-RapidAPI-Key': 'bfd0a36084mshd6a97588cc72f55p1216b7jsn13b5eaf86e1f'
       }
     };
 
@@ -43,21 +43,42 @@ class App extends Component {
 
     // Functions calls to retrieve sidebar info
 
-    this.setState({ bodyPartList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
+    // this.setState({ bodyPartList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
 
-    this.setState({ targetAreaList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
+    // this.setState({ targetAreaList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
 
-    this.setState({ equipmentList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
+    // this.setState({ equipmentList: await this.retrieveSidebarOptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
 
     this.setState({ appLoaded: true });
   }
 
-  
   render () {
 
-    // console.log(this.state.bodyPartList);
-    // console.log(this.state.targetAreaList);
-    // console.log(this.state.equipmentList);
+    const bringBodypartItemsToView = () => {
+      this.setState({ bodypartListInView: !this.state.bodypartListInView });
+      if (this.state.bodypartListInView) { this.bodypartListAnim.play(); }
+      else { this.bodypartListAnim.reverse(); } 
+    }
+
+    const bringTargetareasItemsToView = () => {
+      this.setState({ targetAreaListInView: !this.state.targetAreaListInView });
+      if (this.state.targetAreaListInView) { this.targetAreaListAnim.play(); }
+      else { this.targetAreaListAnim.reverses(); }
+    }
+
+    const bringEquipmentItemsToView = () => {
+      this.setState({ equipmentListInView: !this.state.equipmentListInView });
+      if (this.state.equipmentListInView) { this.equipmentListAnim.play(); }
+      else { this.equipmentListAnim.reverse(); }
+    }
+
+    const bringCategoriesItemsToView = () => {
+      this.setState({ categoriesListInView: !this.state.categoriesListInView });
+      if (this.state.categoriesListInView) { this.categoriesListAnim.play(); }
+      else { this.categoriesListAnim.reverse(); }
+    }
+  
+    console.log(this.state.bodypartListInView)
 
     return (
       <div className="container">
@@ -87,33 +108,46 @@ class App extends Component {
               <div className='returnBtn' onClick={() => this.sidebarAnim.reverse()} ><BsArrowBarLeft className='logo'/></div>
             </div>
 
-            <p className='bodypartBtn'>Bodyparts</p>
+            <p className={this.state.bodypartListInView ? 'bodypartBtn active' : 'bodypartBtn'} onClick={() => { this.setState({ bodypartListInView: !this.state.bodypartListInView})} }>Bodyparts</p>
   
-            <div className='itemsViewCntr'>
-              { this.state.appLoaded ? this.state.bodyPartList.map(item => 
+            <div className={this.state.bodypartListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
+              {/* { this.state.appLoaded ? this.state.bodyPartList.map(item => 
                 <p className='indItem' item={item} key={item}>{item}</p>
-              ) : null}
+              ) : null} */}
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
             </div>
 
-            <p className='targetareasBtn'>Target Areas</p>
+            <p className={this.state.targetAreaListInView ? 'targetareasBtn active' : 'targetareasBtn'} onClick={() => { this.setState({ targetAreaListInView: !this.state.targetAreaListInView }); }}>Target Areas</p>
 
-            <div className='itemsViewCntr'>
-              { this.state.appLoaded ? this.state.targetAreaList.map(item => 
+            <div className={this.state.targetAreaListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
+              {/* { this.state.appLoaded ? this.state.targetAreaList.map(item => 
                 <p className='indItem' item={item} key={item}>{item}</p>
-              ) : null}
+              ) : null} */}
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
             </div>
 
-            <p className='equipmentBtn'>Equipment</p>
+            <p className={this.state.equipmentListInView ? 'equipmentBtn active' : 'equipmentBtn'} onClick={() => { this.setState({ equipmentListInView: !this.state.equipmentListInView }); }}>Equipment</p>
 
-            <div className='itemsViewCntr'>
-              { this.state.appLoaded ? this.state.equipmentList.map(item => 
+            <div className={this.state.equipmentListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
+              {/* { this.state.appLoaded ? this.state.equipmentList.map(item => 
                 <p className='indItem' item={item} key={item}>{item}</p>
-              ) : null}
+              ) : null} */}
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
+              <p className='indItem'>Item</p>
             </div>
 
-            <p className='savedCategoriesBtn'>Saved Categories</p>
+            <p className={this.state.categoriesListInView ? 'savedCategoriesBtn active' : 'savedCategoriesBtn'} onClick={() => { this.setState({ categoriesListInView: !this.state.categoriesListInView }); }}>Saved Categories</p>
 
-            <div className='itemsViewCntr' id='lastCntr'>
+            <div className={this.state.categoriesListInView ? 'itemsViewCntr active' : 'itemsViewCntr'} id='lastCntr'>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>

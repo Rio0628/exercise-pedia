@@ -180,19 +180,29 @@ body {
   cursor: pointer;
 }
 
-.bodypartBtn.active, .targetareasBtn.active, .equipmentBtn.active, .savedCategoriesBtn.active {
+.bodypartBtn:hover, .targetareasBtn:hover, .equipmentBtn:hover, .savedCategoriesBtn:hover ,.bodypartBtn.active, .targetareasBtn.active, .equipmentBtn.active, .savedCategoriesBtn.active {
   text-decoration: underline;
 }
 
 .itemsViewCntr {
-  position: relative;
+  position: absolute;
   width: 100%;
   display: flex;
   /* flex-wrap: wrap; */
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  pointer-events: none;
   background: #ebebeb;
   outline: 1px solid red;
+  transition: none;
+}
+
+.itemsViewCntr.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+  transition: .5s linear;
 }
 
 #lastCntr { margin-bottom: 5rem; }
