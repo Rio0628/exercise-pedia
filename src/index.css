@@ -288,6 +288,7 @@ body {
   font-weight: 800;
   letter-spacing: 2px;
   overflow: hidden;
+  pointer-events: none;
   outline: 1px solid red;
 }
 
@@ -295,6 +296,7 @@ body {
   position: relative;
   font-size: 17px;
   font-weight: 600;
+  pointer-events: none;
   text-align: center;
 }
 
@@ -302,6 +304,7 @@ body {
   position: relative;
   height: 14rem;
   width: 90%;
+  pointer-events: none;
   outline: 1px solid red;
 }
 

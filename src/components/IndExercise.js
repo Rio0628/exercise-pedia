@@ -1,17 +1,20 @@
 import React from 'react';
 
-const IndExercise = () => {
+const IndExercise = (props) => {
+    
+    console.log(props.exercise)
+
     return (
         <div className='indExercise'>
-            <h3 className='indExerciseName'>Exercise</h3>
+            <h3 className='indExerciseName'>{props.exercise.name}</h3>
 
-            <div className='indExerciseGif'></div>
+            <img className='indExerciseGif' alt={props.exercise} src={props.exercise.gifUrl}></img>
 
-            <p className='exerciseBodyPart'>Body Part Exercise</p>
+            <p className='exerciseBodyPart'>Body Part: {props.exercise.bodyPart}</p>
 
-            <p className='exerciseTargetArea'>Target Exercise</p>
+            <p className='exerciseTargetArea'>Target: {props.exercise.target}</p>
 
-            <p className='exerciseEquipment'>Equipment Exercise</p>
+            <p className='exerciseEquipment'>Equipment: {props.exercise.equipment}</p>
 
             <div className='saveExerciseCntr'>
                 <select className='selectCat'>

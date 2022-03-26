@@ -60,12 +60,23 @@ class App extends Component {
     const bringBodypartItemsToView = async (e) => {
       let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
 
+      // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
       this.setState({ searchRsltsView: true });
       // console.log(items);
+    }
+
+    const showIndExercise = (e) => {
+      // console.log(e.target.getAttribute('item'));
+      const item = this.state.categoryItems.filter( item => item.id === e.target.getAttribute('item'));
+  
+      this.setState({ searchRsltsView: false });
+      this.setState({ indExerciseView: true });
+      this.setState({ currentExercise: item[0] });
+      // console.log(item)
     }
 
     return (
@@ -143,9 +154,9 @@ class App extends Component {
             </div>
           </div>
 
-          { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems}/> : null }
+          { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          {/* <IndExercise /> */}
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} /> : null }
 
           {/* <SavedCategory /> */}
 

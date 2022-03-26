@@ -13,7 +13,7 @@ const SearchRslts = (props) => {
 
                 { props.items.map(item => 
 
-                    <div className='indRsltItem' key={item.id} item={item}>
+                    <div className='indRsltItem' key={item.id} item={item.id} onClick={props.showIndExercise}>
                         <p className='exerciseName'>{item.name}</p>
 
 
