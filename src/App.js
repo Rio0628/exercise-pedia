@@ -79,6 +79,25 @@ class App extends Component {
       // console.log(item)
     }
 
+    const saveItemNewCat = (categoryName, categoryDesc) => {
+      console.log(this.state.currentExercise)
+      const exerciseObj = {
+        exercise: this.state.currentExercise.name,
+        idExercise: this.state.currentExericse.id,
+        category: categoryName
+      };
+
+      const newCat = {
+        name: categoryName,
+        description: categoryDesc
+      };
+
+      // REST API CALLS WILL GO HERE 
+
+      console.log(exerciseObj)
+      console.log(newCat)
+    }
+
     return (
       <div className="container">
         
@@ -156,7 +175,7 @@ class App extends Component {
 
           { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} /> : null }
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
 
           {/* <SavedCategory /> */}
 
