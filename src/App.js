@@ -3,6 +3,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsArrowBarLeft } from 'react-icons/bs';
 import { SearchRslts, IndExercise, SavedCategory } from './components';
+import APIS from './api';
 import axios from 'axios';
 import gsap from 'gsap';
 
@@ -13,7 +14,9 @@ class App extends Component {
       previewView: true,
       indExerciseView: false,
       savedCategoryView: false,
-      searchRsltsView: false
+      searchRsltsView: false,
+      allSavedCategories: [],
+      allSavedExercises: [],
     };
     this.sidebarRef = React.createRef();
     this.sidebarAnim = gsap.timeline({ paused: true });
@@ -44,8 +47,10 @@ class App extends Component {
     // Sidebar appear anim
     this.sidebarAnim.to(this.sidebarRef.current, { opacity: 1, x: 0, duration: 1, ease: 'none'} )
 
-    // Functions calls to retrieve sidebar info
+    APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) )
+    APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
+    // Functions calls to retrieve sidebar info
     // this.setState({ bodyPartList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
 
     // this.setState({ targetAreaList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
@@ -56,6 +61,9 @@ class App extends Component {
   }
 
   render () {
+  
+    console.log(this.state.allSavedCategories);
+    console.log(this.state.allSavedExercises)
 
     const bringBodypartItemsToView = async (e) => {
       let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
@@ -83,7 +91,7 @@ class App extends Component {
       console.log(this.state.currentExercise)
       const exerciseObj = {
         exercise: this.state.currentExercise.name,
-        idExercise: this.state.currentExericse.id,
+        idExercise: this.state.currentExercise.id,
         category: categoryName
       };
 
@@ -93,9 +101,11 @@ class App extends Component {
       };
 
       // REST API CALLS WILL GO HERE 
+      APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
+      APIS.createCategory(newCat).then(msg => console.log('New Category Created!'));
 
-      console.log(exerciseObj)
-      console.log(newCat)
+      // console.log(exerciseObj)
+      // console.log(newCat)
     }
 
     return (

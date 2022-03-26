@@ -4,7 +4,7 @@ const IndExercise = (props) => {
     
     // let newCatView = false;
     let [newCatView, setNewCatView] = useState(false), [categoryName, setCategoryName] = useState(''), [categoryDesc, setCategoryDesc] = useState('');
-    console.log(categoryName, categoryDesc);
+    // console.log(categoryName, categoryDesc);
     return (
         <div className='indExercise'>
             <h3 className='indExerciseName'>{props.exercise.name}</h3>
