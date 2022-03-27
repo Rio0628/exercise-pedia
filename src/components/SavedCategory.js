@@ -19,7 +19,7 @@ const SavedCategory = (props) => {
                         <div className='exerciseNameBtnCntr'>
                             <p className='exerciseName' onClick={() => props.savedItemToView(item.idExercise)}>{item.exercise}</p>
 
-                            <div className='removeBtn' onClick={() => props.deleteItem(item.id, item.category)}><RiDeleteBin7Fill className='logo' /></div>
+                            <div className='removeBtn' test1='test' onClick={() => {props.deleteItem(item.id, item.category)}}><RiDeleteBin7Fill className='logo' /></div>
                         </div>
 
     

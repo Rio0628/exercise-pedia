@@ -144,8 +144,6 @@ class App extends Component {
       APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
       APIS.createCategory(newCat).then(msg => console.log('New Category Created!'));
 
-      // console.log(exerciseObj)
-      // console.log(newCat)
     }
 
     const savedItemToView = async (id) => {
@@ -162,17 +160,16 @@ class App extends Component {
     }
 
     const deleteItem = async (id, category) => {
-
       await APIS.deleteExercise(id).then(rslt => alert('Exercise deleted from DB.')).catch(err => alert('Error deleting exercise from DB.'));
 
-      APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
+      await APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
       let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === category);
 
-      await this.setState({ categoryItems: catItems });
-
-      this.setState({ indExerciseView: false });
-      this.setState({ savedCategoryView: true });
+      // this.loadItems();
+      this.setState({ categoryItems: catItems });
+  
+      // window.location.reload();
     }
 
     return (
