@@ -6,9 +6,10 @@ const SavedCategory = (props) => {
 
     return (
         <div className='savedCategory'>
-            <h3 className='savedCategoryHeading'>Category: Something</h3>
+
+            <h3 className='savedCategoryHeading'>Category: {props.category.name}</h3>
             
-            <p className='descriptionCategory'>This is the description for the category</p>
+            <p className='descriptionCategory'>Description: {props.category.description}</p>
         
             <div className='rsltsItemsCntr'>
                 

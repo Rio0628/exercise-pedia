@@ -106,6 +106,9 @@ class App extends Component {
 
       let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === e.target.getAttribute('category'));
 
+      let category = this.state.allSavedCategories.filter(category => category.name === e.target.getAttribute('category'))
+
+      this.setState({ currentCategory: category[0] });
       this.setState({ categoryItems: catItems });
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
@@ -115,6 +118,7 @@ class App extends Component {
 
       console.log(catItems)
     }
+    console.log(this.state.currentCategory);
 
     const showIndExercise = (e) => {
       // console.log(e.target.getAttribute('item'));
@@ -143,6 +147,8 @@ class App extends Component {
       // REST API CALLS WILL GO HERE 
       APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
       APIS.createCategory(newCat).then(msg => console.log('New Category Created!'));
+
+      APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) );
 
     }
 
@@ -250,7 +256,7 @@ class App extends Component {
 
           { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
 
-          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
+          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 
 
           {this.state.previewView ? 
