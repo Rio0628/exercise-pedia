@@ -3,8 +3,6 @@ import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 const SavedCategory = (props) => {
 
-    
-    console.log(props.items)
 
     return (
         <div className='savedCategory'>
@@ -18,14 +16,14 @@ const SavedCategory = (props) => {
                 
                     <div className='indRsltItem' key={item.exercise}>
                     
-                        <div className='exerciseNameBtnCntr' exerciseId={item.idExercise}>
-                            <p className='exerciseName'>{item.exercise}</p>
+                        <div className='exerciseNameBtnCntr'>
+                            <p className='exerciseName' onClick={() => props.savedItemToView(item.idExercise)}>{item.exercise}</p>
 
-                            <div className='removeBtn' exerciseId={item.id}><RiDeleteBin7Fill className='logo' /></div>
+                            <div className='removeBtn' onClick={() => props.deleteItem(item.id, item.category)}><RiDeleteBin7Fill className='logo' /></div>
                         </div>
 
     
-                        <img className='gifOfExercise' src={item.gif} alt={item.exercise}></img>
+                        <img className='gifOfExercise' src={item.gif} alt={item.exercise} onClick={() => props.savedItemToView(item.idExercise)}></img>
 
                     </div>
           

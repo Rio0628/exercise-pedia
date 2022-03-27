@@ -124,6 +124,33 @@ class App extends Component {
       // console.log(newCat)
     }
 
+    const savedItemToView = async (id) => {
+
+      let item = await this.retrieveDBoptions(`https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`);
+
+      console.log(item)
+
+      this.setState({ currentExercise: item });
+      this.setState({ previewView: false });
+      this.setState({ savedCategoryView: false });
+      this.setState({ searchRsltsView: false });
+      this.setState({ indExerciseView: true });
+    }
+
+    const deleteItem = (id, category) => {
+
+      APIS.deleteExercise(id).then(rslt => alert('Exercise deleted from DB.')).catch(err => alert('Error deleting exercise from DB.'));
+
+      APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
+
+      let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === category);
+
+      this.setState({ categoryItems: catItems });
+
+      this.setState({ savedCategoryView: false });
+      this.setState({ savedCategoryView: true });
+    }
+
     return (
       <div className="container">
         
@@ -202,7 +229,7 @@ class App extends Component {
 
           { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
 
-          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems}/> : null }
+          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 
 
           {this.state.previewView ? 

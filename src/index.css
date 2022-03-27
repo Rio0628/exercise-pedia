@@ -280,6 +280,8 @@ body {
   transition: .1s linear;
 }
 
+.savedCategory .indRsltItem { z-index: 3; }
+
 .exerciseName {
   position: relative;
   text-align: center;
@@ -291,6 +293,8 @@ body {
   pointer-events: none;
   outline: 1px solid red;
 }
+
+.savedCategory .exerciseName { pointer-events: auto; }
 
 .exerciseTarget {
   position: relative;
@@ -306,11 +310,14 @@ body {
   width: 90%;
   pointer-events: none;
   outline: 1px solid red;
+} 
+
+.savedCategory .gifOfExercise { 
+  pointer-events: auto;
+  margin-bottom: 20px;
 }
 
 /* -- IND EXERCISE STYLES -- */
-
-/* .indExercise { margin-bottom: 2rem; } */
 
 .indExerciseGif {
   position: relative;
@@ -492,6 +499,7 @@ body {
   right: 0px;
   font-size: 2rem;
   display: flex;
+  z-index: 4;
   outline: 1px solid red;
   cursor: pointer;
 }
