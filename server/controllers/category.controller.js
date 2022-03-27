@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     // Create category
     const category = {
         name: req.body.name,
-        descirption: req.body.description
+        description: req.body.description
     };
 
     Category.create(category).then(data => res.send(data)).catch(err => res.status(500).send({ message: err.message || 'Some error occurred while creating the Category' }))

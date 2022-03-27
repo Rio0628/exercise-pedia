@@ -77,6 +77,21 @@ class App extends Component {
       // console.log(items);
     }
 
+    const bringCategoryItemsToView = (e) => {
+      console.log(e.target.getAttribute('category'))
+
+      let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === e.target.getAttribute('category'));
+
+      this.setState({ categoryItems: catItems });
+      this.setState({ previewView: false });
+      this.setState({ indExerciseView: false });
+      this.setState({ searchRsltsView: false });
+      this.setState({ savedCategoryView: true });
+
+
+      console.log(catItems)
+    }
+
     const showIndExercise = (e) => {
       // console.log(e.target.getAttribute('item'));
       const item = this.state.categoryItems.filter( item => item.id === e.target.getAttribute('item'));
@@ -91,6 +106,7 @@ class App extends Component {
       console.log(this.state.currentExercise)
       const exerciseObj = {
         exercise: this.state.currentExercise.name,
+        gif: this.state.currentExercise.gifUrl,
         idExercise: this.state.currentExercise.id,
         category: categoryName
       };
@@ -176,10 +192,9 @@ class App extends Component {
             <p className={this.state.categoriesListInView ? 'savedCategoriesBtn active' : 'savedCategoriesBtn'} onClick={() => { this.setState({ categoriesListInView: !this.state.categoriesListInView }); }}>Saved Categories</p>
 
             <div className={this.state.categoriesListInView ? 'itemsViewCntr active' : 'itemsViewCntr'} id='lastCntr'>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.allSavedCategories.map(item => 
+                <p className='indItem' category={item.name} key={item.id} onClick={bringCategoryItemsToView}>{item.name}</p>
+              )}
             </div>
           </div>
 
@@ -187,7 +202,7 @@ class App extends Component {
 
           { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
 
-          {/* <SavedCategory /> */}
+          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems}/> : null }
 
 
           {this.state.previewView ? 

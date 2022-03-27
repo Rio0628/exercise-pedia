@@ -9,6 +9,7 @@ exports.create = (req, res) => {
     // Create Exercise
     const exercise = {
         exercise: req.body.exercise,
+        gif: req.body.gif,
         idExercise: req.body.idExercise,
         category: req.body.category
     };

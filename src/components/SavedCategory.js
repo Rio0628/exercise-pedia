@@ -1,7 +1,11 @@
 import React from 'react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 
-const SavedCategory = () => {
+const SavedCategory = (props) => {
+
+    
+    console.log(props.items)
+
     return (
         <div className='savedCategory'>
             <h3 className='savedCategoryHeading'>Category: Something</h3>
@@ -9,38 +13,24 @@ const SavedCategory = () => {
             <p className='descriptionCategory'>This is the description for the category</p>
         
             <div className='rsltsItemsCntr'>
-                <div className='indRsltItem'>
+                
+                { props.items.map(item => 
+                
+                    <div className='indRsltItem' key={item.exercise}>
                     
-                    <div className='exerciseNameBtnCntr'>
-                        <p className='exerciseName'>Exercise</p>
+                        <div className='exerciseNameBtnCntr' exerciseId={item.idExercise}>
+                            <p className='exerciseName'>{item.exercise}</p>
 
-                        <div className='removeBtn'><RiDeleteBin7Fill className='logo' /></div>
-                    </div>
+                            <div className='removeBtn' exerciseId={item.id}><RiDeleteBin7Fill className='logo' /></div>
+                        </div>
 
-
-                    <div className='gifOfExercise'>
-
-                    </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
-
-                <div className='indRsltItem'>
-                    
-                    <div className='exerciseNameBtnCntr'>
-                        <p className='exerciseName'>Exercise</p>
-
-                        <div className='removeBtn'><RiDeleteBin7Fill className='logo' /></div>
-                    </div>
-
-
-                    <div className='gifOfExercise'>
+    
+                        <img className='gifOfExercise' src={item.gif} alt={item.exercise}></img>
 
                     </div>
-
-                    <p className='exerciseTarget'>Target</p>
-                </div>
-
+          
+                )}
+                
             </div>
         </div>
     );
