@@ -77,6 +77,30 @@ class App extends Component {
       // console.log(items);
     }
 
+    const bringTargetAreaItemsToView = async (e) => {
+      let url = `https://exercisedb.p.rapidapi.com/exercises/target/${'abs'}`;
+
+      // this.setState({ categorySearched: e.target.getAttribute('item') });
+      this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ previewView: false });
+      this.setState({ indExerciseView: false });
+      this.setState({ savedCategoryView: false });
+      this.setState({ searchRsltsView: true });
+      // console.log(items);
+    }
+
+    const bringEquipmentItemsToView = async (e) => {
+      let url = `https://exercisedb.p.rapidapi.com/exercises/equipment/${'band'}`;
+
+      // this.setState({ categorySearched: e.target.getAttribute('item') });
+      this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ previewView: false });
+      this.setState({ indExerciseView: false });
+      this.setState({ savedCategoryView: false });
+      this.setState({ searchRsltsView: true });
+      // console.log(items);
+    }
+
     const bringCategoryItemsToView = (e) => {
       console.log(e.target.getAttribute('category'))
 
@@ -137,17 +161,17 @@ class App extends Component {
       this.setState({ indExerciseView: true });
     }
 
-    const deleteItem = (id, category) => {
+    const deleteItem = async (id, category) => {
 
-      APIS.deleteExercise(id).then(rslt => alert('Exercise deleted from DB.')).catch(err => alert('Error deleting exercise from DB.'));
+      await APIS.deleteExercise(id).then(rslt => alert('Exercise deleted from DB.')).catch(err => alert('Error deleting exercise from DB.'));
 
       APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
       let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === category);
 
-      this.setState({ categoryItems: catItems });
+      await this.setState({ categoryItems: catItems });
 
-      this.setState({ savedCategoryView: false });
+      this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: true });
     }
 
@@ -196,7 +220,7 @@ class App extends Component {
               {/* { this.state.appLoaded ? this.state.targetAreaList.map(item => 
                 <p className='indItem' item={item} key={item}>{item}</p>
               ) : null} */}
-              <p className='indItem'>Item</p>
+              <p className='indItem' onClick={bringTargetAreaItemsToView}>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
@@ -209,7 +233,7 @@ class App extends Component {
               {/* { this.state.appLoaded ? this.state.equipmentList.map(item => 
                 <p className='indItem' item={item} key={item}>{item}</p>
               ) : null} */}
-              <p className='indItem'>Item</p>
+              <p className='indItem' onClick={bringEquipmentItemsToView}>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
