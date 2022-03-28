@@ -372,6 +372,12 @@ body {
   cursor: pointer;
 }
 
+.saveExercise.active {
+  background: #ebebeb;
+  outline: none;
+  pointer-events: none;
+}
+
 .saveNewCat {
   position: relative;
   /* bottom: 2.3rem; */

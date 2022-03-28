@@ -62,8 +62,8 @@ class App extends Component {
 
   render () {
   
-    console.log(this.state.allSavedCategories);
-    console.log(this.state.allSavedExercises)
+    // console.log(this.state.allSavedCategories);
+    // console.log(this.state.allSavedExercises)
 
     const bringBodypartItemsToView = async (e) => {
       let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
@@ -137,13 +137,23 @@ class App extends Component {
       // console.log(e.target.getAttribute('category'))
     }
 
+    const checkIfExerciseIsSaved = () => {
+
+      const item = this.state.allSavedExercises.filter( exercise => exercise.exercise === this.state.currentExercise.name )
+
+      if (item[0]) { this.setState({ currentItemSaved: true }); }
+    }
+
     const showIndExercise = (e) => {
       // console.log(e.target.getAttribute('item'));
+      this.setState({ currentItemSaved: false });
       const item = this.state.categoryItems.filter( item => item.id === e.target.getAttribute('item'));
   
       this.setState({ searchRsltsView: false });
       this.setState({ indExerciseView: true });
       this.setState({ currentExercise: item[0] });
+
+      checkIfExerciseIsSaved();
       // console.log(item)
     }
 
@@ -171,11 +181,15 @@ class App extends Component {
 
     const savedItemToView = async (id) => {
 
+      this.setState({ currentItemSaved: false });
       let item = await this.retrieveDBoptions(`https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`);
 
       console.log(item)
 
       this.setState({ currentExercise: item });
+
+      checkIfExerciseIsSaved();
+
       this.setState({ previewView: false });
       this.setState({ savedCategoryView: false });
       this.setState({ searchRsltsView: false });
@@ -271,7 +285,7 @@ class App extends Component {
 
           { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItemNewCat={saveItemNewCat}/> : null }
 
           { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 

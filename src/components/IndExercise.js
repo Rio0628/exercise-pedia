@@ -19,12 +19,12 @@ const IndExercise = (props) => {
 
             <div className='saveExerciseCntr'>
                 <select className='selectCat'>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    { props.allCategories.map(category => 
+                        <option key={category.name}>{category.name}</option>
+                    )}
                 </select>
 
-                <p className='saveExercise'>Save</p>
+                <p className={ props.currentItemSaved ? 'saveExercise active' : 'saveExercise' }>Save</p>
             </div>
 
             <p className='saveNewCat' onClick={() => { setNewCatView(true) }}>Save To New Category</p>
