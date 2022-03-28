@@ -468,6 +468,49 @@ body {
 
 /* -- SAVED CATEGORY ITEMS STYLING -- */
 
+.headingRemoveBtnCntr {
+  position: relative;
+  width: 19rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: 1px solid blue;
+}
+
+.savedCategoryHeading {
+  outline: 1px solid red;
+  width: 68%;
+  text-align: left;
+  overflow: hidden;
+}
+
+.removeCategoryBtn {
+  position: absolute;
+  right: 0px;
+  top: 3px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  outline: 2px solid #161d1d;
+  cursor: pointer;
+}
+
+.removeCategoryBtn:hover {
+  background: #d62828;
+  color: #fff;
+  outline: 2px solid #d62828;
+  transition: .1s linear;
+}
+
+/* 
+            <div className='headingRemoveBtnCntr'>
+                <h3 className='savedCategoryHeading'>Category: {props.category.name}</h3>
+
+                <p className='removeCategoryBtn'> */
+
+
 .descriptionCategory {
   position: relative;
   width: 19rem;
@@ -537,7 +580,7 @@ body {
 
   .createNewCatHeading { font-size: 24px; }
 
-  .descriptionCategory { width: 35rem; }
+  .descriptionCategory, .headingRemoveBtnCntr { width: 35rem; }
 }
 
 @media screen and (min-width: 1000px) {

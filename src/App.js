@@ -118,7 +118,24 @@ class App extends Component {
 
       console.log(catItems)
     }
-    console.log(this.state.currentCategory);
+    
+    const removeCategory = (e) => {
+      
+      // console.log(this.state.categoryItems)
+
+      this.state.categoryItems.forEach(exercise => {
+        APIS.deleteExercise(exercise.id).then(rslt => console.log(`Exercise ${exercise.id} deleted successfully!`)).catch(err => console.log('Error deleting exercise. Try again.'))
+      });
+
+
+      APIS.deleteCategory(e.target.getAttribute('category')).then(rslt => alert('Category removed successfully!')).catch(err => alert('Error occurred while trying to remove category.'));
+
+      this.setState({ savedCategoryView: false });
+      this.setState({ previewView: true });
+      
+      // console.log(e.target)
+      // console.log(e.target.getAttribute('category'))
+    }
 
     const showIndExercise = (e) => {
       // console.log(e.target.getAttribute('item'));
@@ -256,7 +273,7 @@ class App extends Component {
 
           { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} saveItemNewCat={saveItemNewCat}/> : null }
 
-          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
+          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 
 
           {this.state.previewView ? 

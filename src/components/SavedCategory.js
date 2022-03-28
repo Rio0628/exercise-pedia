@@ -3,11 +3,16 @@ import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 const SavedCategory = (props) => {
 
+    console.log(props.category)
 
     return (
         <div className='savedCategory'>
 
-            <h3 className='savedCategoryHeading'>Category: {props.category.name}</h3>
+            <div className='headingRemoveBtnCntr'>
+                <h3 className='savedCategoryHeading'>Category: {props.category.name}</h3>
+
+                <p className='removeCategoryBtn' category={props.category.id} onClick={props.removeCategory}>Remove</p>
+            </div>
             
             <p className='descriptionCategory'>Description: {props.category.description}</p>
         
