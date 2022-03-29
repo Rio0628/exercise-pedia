@@ -138,7 +138,7 @@ class App extends Component {
     }
 
     const checkIfExerciseIsSaved = () => {
-
+// console.log(this.state.currentExercise)
       const item = this.state.allSavedExercises.filter( exercise => exercise.exercise === this.state.currentExercise.name )
 
       if (item[0]) { 
@@ -147,14 +147,15 @@ class App extends Component {
       }
     }
 
-    const showIndExercise = (e) => {
+    const showIndExercise = async (e) => {
       // console.log(e.target.getAttribute('item'));
       this.setState({ currentItemSaved: false });
       const item = this.state.categoryItems.filter( item => item.id === e.target.getAttribute('item'));
+      console.log(item)
   
       this.setState({ searchRsltsView: false });
       this.setState({ indExerciseView: true });
-      this.setState({ currentExercise: item[0] });
+      await this.setState({ currentExercise: item[0] });
 
       checkIfExerciseIsSaved();
       // console.log(item)

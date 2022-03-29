@@ -3,20 +3,27 @@ import React, { useState } from 'react';
 const IndExercise = (props) => {
     
     // let newCatView = false;
-    let newCatInp = props.currentSavedItemInfo.category;
+    // let newCatInp = props.currentSavedItemInfo.category
+    let category = '';
+    
+    if (props.currentSavedItemInfo) { category = props.currentSavedItemInfo.category; }
+
+
     let [newCatView, setNewCatView] = useState(false), 
         [categoryName, setCategoryName] = useState(''), 
         [categoryDesc, setCategoryDesc] = useState(''),
-        [currentItemSaved, setCurrentItemSaved] = useState(props.currentItemSaved);
+        [newCatInp, setNewCatInp] = useState(category),
+        [currentItemSaved, setCurrentItemSaved] = useState(props.currentItemSaved)
+    ;
 
     const checkInput = async (e) => {
     
-        newCatInp = e.target.value;
+        setNewCatInp(e.target.value);
 
         console.log(e.target.value)
         console.log(newCatInp)
-
-        if (newCatInp === props.currentSavedItemInfo.category) {  setCurrentItemSaved(true); console.log('works') }
+        console.log(category)
+        if (newCatInp === category) {  setCurrentItemSaved(true); console.log('works') }
         else { setCurrentItemSaved(false); console.log('works 2') }
     
     }
@@ -35,7 +42,7 @@ const IndExercise = (props) => {
             <p className='exerciseEquipment'>Equipment: {props.exercise.equipment}</p>
 
             <div className='saveExerciseCntr'>
-                <select className='selectCat' defaultValue={props.currentSavedItemInfo.category} onChange={checkInput}>
+                <select className='selectCat' defaultValue={category} onChange={checkInput}>
                     { props.allCategories.map(category => 
                         <option key={category.name}>{category.name}</option>
                     )}
