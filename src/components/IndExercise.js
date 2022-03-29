@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 const IndExercise = (props) => {
     
     // let newCatView = false;
+    let newCatInp;
     let [newCatView, setNewCatView] = useState(false), [categoryName, setCategoryName] = useState(''), [categoryDesc, setCategoryDesc] = useState('');
     // console.log(categoryName, categoryDesc);
+    console.log(newCatInp);
+
     return (
         <div className='indExercise'>
             <h3 className='indExerciseName'>{props.exercise.name}</h3>
@@ -18,13 +21,16 @@ const IndExercise = (props) => {
             <p className='exerciseEquipment'>Equipment: {props.exercise.equipment}</p>
 
             <div className='saveExerciseCntr'>
-                <select className='selectCat'>
+                <select className='selectCat' defaultValue={props.currentSavedItemInfo.category} onChange={(e) => { newCatInp = e.target.value }}>
                     { props.allCategories.map(category => 
                         <option key={category.name}>{category.name}</option>
                     )}
+                    <option>awd</option>
+                    <option>awaswdd</option>
+                    <option>adsfadsfawaswdd</option>
                 </select>
 
-                <p className={ props.currentItemSaved ? 'saveExercise active' : 'saveExercise' }>Save</p>
+                <p className={ !props.currentItemSaved ? 'saveExercise active' : 'saveExercise' } onClick={() => console.log(newCatInp)}>{ props.currentItemSaved ? 'Saved' : 'Save'  }</p>
             </div>
 
             <p className='saveNewCat' onClick={() => { setNewCatView(true) }}>Save To New Category</p>

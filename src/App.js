@@ -141,7 +141,10 @@ class App extends Component {
 
       const item = this.state.allSavedExercises.filter( exercise => exercise.exercise === this.state.currentExercise.name )
 
-      if (item[0]) { this.setState({ currentItemSaved: true }); }
+      if (item[0]) { 
+        this.setState({ currentItemSaved: true });
+        this.setState({ currentSavedItemInfo: item[0] });
+      }
     }
 
     const showIndExercise = (e) => {
@@ -156,6 +159,12 @@ class App extends Component {
       checkIfExerciseIsSaved();
       // console.log(item)
     }
+
+    const saveItem = () => {
+      // Check if item has been saved before 
+      // if (this.state.) {}
+    }
+  console.log(this.state.currentExercise)
 
     const saveItemNewCat = (categoryName, categoryDesc) => {
       console.log(this.state.currentExercise)
@@ -285,7 +294,7 @@ class App extends Component {
 
           { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItemNewCat={saveItemNewCat}/> : null }
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItemNewCat={saveItemNewCat}/> : null }
 
           { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 
