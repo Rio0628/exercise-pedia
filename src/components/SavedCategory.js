@@ -3,7 +3,7 @@ import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 const SavedCategory = (props) => {
 
-    console.log(props.category)
+    // console.log(props.category)
 
     return (
         <div className='savedCategory'>

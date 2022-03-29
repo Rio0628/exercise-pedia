@@ -160,9 +160,29 @@ class App extends Component {
       // console.log(item)
     }
 
-    const saveItem = () => {
+    const saveItem = (category) => {
       // Check if item has been saved before 
-      // if (this.state.) {}
+      if (this.state.currentItemSaved) {
+        let item = this.state.currentSavedItemInfo;
+        item.category = category;
+
+        console.log(item)
+        // Call API method to update Exercise
+        // APIS.updateExercise(item.id, item).then(rslt => alert(`Exercise ${item.id} updated successfully!`)).catch(err => alert('Error updating Exercise. Try again!'))
+      } else {
+        let item = {
+          exercise: this.state.currentExercise.name,
+          gif: this.state.currentExercise.gifUrl,
+          idExercise: this.state.currentExercise.id,
+          category: category
+        }
+        console.log(item)
+
+        // Call API method to create Exercise
+        // APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
+      }
+
+
     }
   console.log(this.state.currentExercise)
 
@@ -294,7 +314,7 @@ class App extends Component {
 
           { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItemNewCat={saveItemNewCat}/> : null }
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItem={saveItem} saveItemNewCat={saveItemNewCat}/> : null }
 
           { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 

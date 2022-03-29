@@ -3,10 +3,24 @@ import React, { useState } from 'react';
 const IndExercise = (props) => {
     
     // let newCatView = false;
-    let newCatInp;
-    let [newCatView, setNewCatView] = useState(false), [categoryName, setCategoryName] = useState(''), [categoryDesc, setCategoryDesc] = useState('');
-    // console.log(categoryName, categoryDesc);
-    console.log(newCatInp);
+    let newCatInp = props.currentSavedItemInfo.category;
+    let [newCatView, setNewCatView] = useState(false), 
+        [categoryName, setCategoryName] = useState(''), 
+        [categoryDesc, setCategoryDesc] = useState(''),
+        [currentItemSaved, setCurrentItemSaved] = useState(props.currentItemSaved);
+
+    const checkInput = async (e) => {
+    
+        newCatInp = e.target.value;
+
+        console.log(e.target.value)
+        console.log(newCatInp)
+
+        if (newCatInp === props.currentSavedItemInfo.category) {  setCurrentItemSaved(true); console.log('works') }
+        else { setCurrentItemSaved(false); console.log('works 2') }
+    
+    }
+
 
     return (
         <div className='indExercise'>
@@ -21,7 +35,7 @@ const IndExercise = (props) => {
             <p className='exerciseEquipment'>Equipment: {props.exercise.equipment}</p>
 
             <div className='saveExerciseCntr'>
-                <select className='selectCat' defaultValue={props.currentSavedItemInfo.category} onChange={(e) => { newCatInp = e.target.value }}>
+                <select className='selectCat' defaultValue={props.currentSavedItemInfo.category} onChange={checkInput}>
                     { props.allCategories.map(category => 
                         <option key={category.name}>{category.name}</option>
                     )}
@@ -30,7 +44,7 @@ const IndExercise = (props) => {
                     <option>adsfadsfawaswdd</option>
                 </select>
 
-                <p className={ !props.currentItemSaved ? 'saveExercise active' : 'saveExercise' } onClick={() => console.log(newCatInp)}>{ props.currentItemSaved ? 'Saved' : 'Save'  }</p>
+                <p className={ currentItemSaved ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
             </div>
 
             <p className='saveNewCat' onClick={() => { setNewCatView(true) }}>Save To New Category</p>
