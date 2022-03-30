@@ -169,7 +169,7 @@ class App extends Component {
 
         console.log(item)
         // Call API method to update Exercise
-        // APIS.updateExercise(item.id, item).then(rslt => alert(`Exercise ${item.id} updated successfully!`)).catch(err => alert('Error updating Exercise. Try again!'))
+        APIS.updateExercise(item.id, item).then(rslt => alert(`Exercise ${item.id} updated successfully!`)).catch(err => alert('Error updating Exercise. Try again!'))
       } else {
         let item = {
           exercise: this.state.currentExercise.name,
@@ -180,7 +180,7 @@ class App extends Component {
         console.log(item)
 
         // Call API method to create Exercise
-        // APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
+        APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
       }
 
 

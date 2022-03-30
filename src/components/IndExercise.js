@@ -4,8 +4,10 @@ const IndExercise = (props) => {
     
     // let newCatView = false;
     // let newCatInp = props.currentSavedItemInfo.category
-    let category = '';
+    let category = props.allCategories[0].name || '';
     
+    // console.log(props.allCategories)
+
     if (props.currentSavedItemInfo) { category = props.currentSavedItemInfo.category; }
 
 
@@ -18,13 +20,14 @@ const IndExercise = (props) => {
 
     const checkInput = async (e) => {
     
-        setNewCatInp(e.target.value);
+        if (e.target.value === category) {  setCurrentItemSaved(true); console.log('works') }
+        else { setCurrentItemSaved(false); console.log('works 2') }
+
+        await setNewCatInp(e.target.value);
 
         console.log(e.target.value)
         console.log(newCatInp)
         console.log(category)
-        if (newCatInp === category) {  setCurrentItemSaved(true); console.log('works') }
-        else { setCurrentItemSaved(false); console.log('works 2') }
     
     }
 
@@ -51,7 +54,7 @@ const IndExercise = (props) => {
                     <option>adsfadsfawaswdd</option>
                 </select>
 
-                <p className={ currentItemSaved ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
+                <p className={ currentItemSaved === true ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
             </div>
 
             <p className='saveNewCat' onClick={() => { setNewCatView(true) }}>Save To New Category</p>
