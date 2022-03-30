@@ -182,10 +182,7 @@ class App extends Component {
         // Call API method to create Exercise
         APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
       }
-
-
     }
-  console.log(this.state.currentExercise)
 
     const saveItemNewCat = (categoryName, categoryDesc) => {
       console.log(this.state.currentExercise)

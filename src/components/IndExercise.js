@@ -4,7 +4,10 @@ const IndExercise = (props) => {
     
     // let newCatView = false;
     // let newCatInp = props.currentSavedItemInfo.category
-    let category = props.allCategories[0].name || '';
+    let category;
+
+    if ( props.allCategories.length ) category = props.allCategories[0].name
+    else category = '';
     
     // console.log(props.allCategories)
 
@@ -42,20 +45,20 @@ const IndExercise = (props) => {
 
             <p className='exerciseTargetArea'><span>Target:</span> {props.exercise.target}</p>
 
-            <p className='exerciseEquipment'><span>Equipment:</span> {props.exercise.equipment}</p>
+            <p className='exerciseEquipment'><span>Equipment:</span> {props.
+            exercise.equipment}</p>
 
-            <div className='saveExerciseCntr'>
-                <select className='selectCat' defaultValue={category} onChange={checkInput}>
-                    { props.allCategories.map(category => 
-                        <option key={category.name}>{category.name}</option>
-                    )}
-                    <option>awd</option>
-                    <option>awaswdd</option>
-                    <option>adsfadsfawaswdd</option>
-                </select>
+            { props.allCategories.length ? 
+                <div className='saveExerciseCntr'>
+                    <select className='selectCat' defaultValue={category} onChange={checkInput}>
+                        { props.allCategories.map(category => 
+                            <option key={category.name}>{category.name}</option>
+                        )}
+                    </select>
 
-                <p className={ currentItemSaved === true ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
-            </div>
+                    <p className={ currentItemSaved === true ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
+                </div>
+            : null }
 
             <p className='saveNewCat' onClick={() => { setNewCatView(true) }}>Save To New Category</p>
 
