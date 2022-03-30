@@ -163,15 +163,16 @@ class App extends Component {
 
     const saveItem = (category) => {
       // Check if item has been saved before 
+      let item;
       if (this.state.currentItemSaved) {
-        let item = this.state.currentSavedItemInfo;
+        item = this.state.currentSavedItemInfo;
         item.category = category;
 
         console.log(item)
         // Call API method to update Exercise
         APIS.updateExercise(item.id, item).then(rslt => alert(`Exercise ${item.id} updated successfully!`)).catch(err => alert('Error updating Exercise. Try again!'))
       } else {
-        let item = {
+        item = {
           exercise: this.state.currentExercise.name,
           gif: this.state.currentExercise.gifUrl,
           idExercise: this.state.currentExercise.id,
@@ -182,6 +183,8 @@ class App extends Component {
         // Call API method to create Exercise
         APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
       }
+      this.setState({ itemSaved: true });
+      this.setState({ currentSavedItemInfo: item });
     }
 
     const saveItemNewCat = (categoryName, categoryDesc) => {
@@ -200,7 +203,7 @@ class App extends Component {
 
       // REST API CALLS WILL GO HERE 
       APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
-      APIS.createCategory(newCat).then(msg => console.log('New Category Created!'));
+      APIS.createCategory(newCat).then(msg => alert('New category created!'));
 
       APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) );
 
@@ -312,7 +315,7 @@ class App extends Component {
 
           { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
 
-          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} allCategories={this.state.allSavedCategories} saveItem={saveItem} saveItemNewCat={saveItemNewCat}/> : null }
+          { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} itemSaved={this.state.itemSaved} allCategories={this.state.allSavedCategories} saveItem={saveItem} saveItemNewCat={saveItemNewCat}/> : null }
 
           { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 

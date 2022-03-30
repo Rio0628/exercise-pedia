@@ -9,10 +9,10 @@ const IndExercise = (props) => {
     if ( props.allCategories.length ) category = props.allCategories[0].name
     else category = '';
     
-    // console.log(props.allCategories)
+    console.log(props.currentSavedItemInfo)
+    console.log(props.currentItemSaved)
 
-    if (props.currentSavedItemInfo) { category = props.currentSavedItemInfo.category; }
-
+    if (props.currentSavedItemInfo || props.itemSaved) { category = props.currentSavedItemInfo.category; }
 
     let [newCatView, setNewCatView] = useState(false), 
         [categoryName, setCategoryName] = useState(''), 
@@ -31,6 +31,17 @@ const IndExercise = (props) => {
         console.log(e.target.value)
         console.log(newCatInp)
         console.log(category)
+    }
+
+    const itemSavedToNewCat = () => {
+
+        console.log('works')
+        
+        category = categoryName;
+
+        props.saveItemNewCat(categoryName, categoryDesc); 
+        setNewCatView(false); 
+        setCurrentItemSaved(true);
     
     }
 
@@ -56,7 +67,7 @@ const IndExercise = (props) => {
                         )}
                     </select>
 
-                    <p className={ currentItemSaved === true ? 'saveExercise active' : 'saveExercise' } onClick={() => props.saveItem(newCatInp)}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
+                    <p className={ currentItemSaved === true ? 'saveExercise active' : 'saveExercise' } onClick={() => { props.saveItem(newCatInp); setCurrentItemSaved(true);}}>{ currentItemSaved ? 'Saved' : 'Save'  }</p>
                 </div>
             : null }
 
@@ -71,7 +82,7 @@ const IndExercise = (props) => {
 
                         <textarea className='descriptionInp' type='text' placeholder='Category Description' onChange={(e) => setCategoryDesc(e.target.value)}/>
 
-                        <p className='createBtn' onClick={() => {props.saveItemNewCat(categoryName, categoryDesc); setNewCatView(false);}}>Create</p>
+                        <p className='createBtn' onClick={itemSavedToNewCat}>Create</p>
         
                         <p className='cancelBtn' onClick={() => setNewCatView(false)}>Cancel</p>
                     </div>
