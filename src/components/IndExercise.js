@@ -38,11 +38,11 @@ const IndExercise = (props) => {
 
             <img className='indExerciseGif' alt={props.exercise} src={props.exercise.gifUrl}></img>
 
-            <p className='exerciseBodyPart'>Body Part: {props.exercise.bodyPart}</p>
+            <p className='exerciseBodyPart'><span>Body Part:</span> {props.exercise.bodyPart}</p>
 
-            <p className='exerciseTargetArea'>Target: {props.exercise.target}</p>
+            <p className='exerciseTargetArea'><span>Target:</span> {props.exercise.target}</p>
 
-            <p className='exerciseEquipment'>Equipment: {props.exercise.equipment}</p>
+            <p className='exerciseEquipment'><span>Equipment:</span> {props.exercise.equipment}</p>
 
             <div className='saveExerciseCntr'>
                 <select className='selectCat' defaultValue={category} onChange={checkInput}>
