@@ -74,6 +74,8 @@ class App extends Component {
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
       this.setState({ searchRsltsView: true });
+
+      this.sidebarAnim.reverse()
       // console.log(items);
     }
 
@@ -86,6 +88,8 @@ class App extends Component {
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
       this.setState({ searchRsltsView: true });
+
+      this.sidebarAnim.reverse()
       // console.log(items);
     }
 
@@ -98,6 +102,8 @@ class App extends Component {
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
       this.setState({ searchRsltsView: true });
+
+      this.sidebarAnim.reverse()
       // console.log(items);
     }
 
@@ -114,6 +120,8 @@ class App extends Component {
       this.setState({ indExerciseView: false });
       this.setState({ searchRsltsView: false });
       this.setState({ savedCategoryView: true });
+
+      this.sidebarAnim.reverse()
 
 
       console.log(catItems)
