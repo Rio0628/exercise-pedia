@@ -12,7 +12,8 @@ const IndExercise = (props) => {
     console.log(props.currentSavedItemInfo)
     console.log(props.currentItemSaved)
 
-    if (props.currentSavedItemInfo || props.itemSaved) { category = props.currentSavedItemInfo.category; }
+    if (props.currentSavedItemInfo || props.itemSaved) { category = props.currentSavedItemInfo.category; console.log('this works')}
+    console.log(category);
 
     let [newCatView, setNewCatView] = useState(false), 
         [categoryName, setCategoryName] = useState(''), 

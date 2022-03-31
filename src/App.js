@@ -150,8 +150,9 @@ class App extends Component {
       const item = this.state.allSavedExercises.filter( exercise => exercise.exercise === this.state.currentExercise.name )
 
       if (item[0]) { 
-        this.setState({ currentItemSaved: true });
         this.setState({ currentSavedItemInfo: item[0] });
+        this.setState({ itemSaved: true });
+        this.setState({ currentItemSaved: true });
       }
     }
 
@@ -166,7 +167,7 @@ class App extends Component {
       await this.setState({ currentExercise: item[0] });
 
       checkIfExerciseIsSaved();
-      // console.log(item)
+      console.log('THis is what is working')
     }
 
     const saveItem = (category) => {
@@ -210,7 +211,12 @@ class App extends Component {
       };
 
       // REST API CALLS WILL GO HERE 
-      APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
+      if (this.state.currentItemSaved) {
+        APIS.updateExercise(this.state.currentSavedItemInfo.id, exerciseObj).then(msg => console.log('Exercise Saved'));
+      } else {
+        APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
+      }
+      
       APIS.createCategory(newCat).then(msg => alert('New category created!'));
 
       APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) );
@@ -224,9 +230,10 @@ class App extends Component {
 
       console.log(item)
 
-      this.setState({ currentExercise: item });
+      await this.setState({ currentExercise: item });
 
       checkIfExerciseIsSaved();
+      console.log('THis is what is workign')
 
       this.setState({ previewView: false });
       this.setState({ savedCategoryView: false });
