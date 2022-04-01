@@ -3,8 +3,6 @@ import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 const SavedCategory = (props) => {
 
-    // console.log(props.category)
-
     return (
         <div className='savedCategory'>
 
@@ -19,7 +17,6 @@ const SavedCategory = (props) => {
             <div className='rsltsItemsCntr'>
                 
                 { props.items.map(item => 
-                
                     <div className='indRsltItem' key={item.exercise}>
                     
                         <div className='exerciseNameBtnCntr'>
@@ -32,7 +29,6 @@ const SavedCategory = (props) => {
                         <img className='gifOfExercise' src={item.gif} alt={item.exercise} onClick={() => props.savedItemToView(item.idExercise)}></img>
 
                     </div>
-          
                 )}
                 
             </div>

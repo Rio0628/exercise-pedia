@@ -7,11 +7,3 @@ module.exports = (sequelize, Sequelize) => {
     });
     return Exercise;
 }
-
-/*
-    
-    Name Exercise
-    Id
-    Category
-
-*/

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsArrowBarLeft } from 'react-icons/bs';
 import { SearchRslts, IndExercise, SavedCategory } from './components';
@@ -24,6 +23,7 @@ class App extends Component {
 
 
   async retrieveDBoptions (URL) {
+    // Function to retrieve info from Exercise DB REST API 
     let data, options = {
       method: 'GET',
       url: URL,
@@ -46,6 +46,7 @@ class App extends Component {
     // Sidebar appear anim
     this.sidebarAnim.to(this.sidebarRef.current, { opacity: 1, x: 0, duration: 1, ease: 'none'} )
 
+    // REST APIS calls for saved exercises and categories
     APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) )
     APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
@@ -60,14 +61,11 @@ class App extends Component {
   }
 
   render () {
-  
-    // console.log(this.state.allSavedCategories);
-    // console.log(this.state.allSavedExercises)
 
     const bringBodypartItemsToView = async (e) => {
+      // Bring the items from list from Exercise DB API and display them within search results view 
       let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
 
-      // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
       this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) });
       this.setState({ previewView: false });
@@ -76,13 +74,12 @@ class App extends Component {
       this.setState({ searchRsltsView: true });
 
       this.sidebarAnim.reverse()
-      // console.log(items);
     }
 
     const bringTargetAreaItemsToView = async (e) => {
-      let url = `https://exercisedb.p.rapidapi.com/exercises/target/${'abs'}`;
+      // Bring the items from list from Exercise DB API and display them within search results view
+      let url = `https://exercisedb.p.rapidapi.com/exercises/target/${e.target.getAttribute('area')}`;
 
-      // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
       this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) }) ;
       this.setState({ previewView: false });
@@ -95,9 +92,9 @@ class App extends Component {
     }
 
     const bringEquipmentItemsToView = async (e) => {
+      // Bring the items from list from Exercise DB API and display them within search results view
       let url = `https://exercisedb.p.rapidapi.com/exercises/equipment/${'band'}`;
 
-      // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
       this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) });
       this.setState({ previewView: false });
@@ -106,12 +103,10 @@ class App extends Component {
       this.setState({ searchRsltsView: true });
 
       this.sidebarAnim.reverse()
-      // console.log(items);
     }
 
     const bringCategoryItemsToView = (e) => {
-      console.log(e.target.getAttribute('category'))
-
+      //  Bring the items from category from REST API and display them within category view
       let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === e.target.getAttribute('category'));
 
       let category = this.state.allSavedCategories.filter(category => category.name === e.target.getAttribute('category'))
@@ -126,14 +121,10 @@ class App extends Component {
 
       this.sidebarAnim.reverse()
 
-
-      console.log(catItems)
     }
     
     const removeCategory = (e) => {
-      
-      // console.log(this.state.categoryItems)
-
+      // Removes category from REST API and deletes exercises within that category
       this.state.categoryItems.forEach(exercise => {
         APIS.deleteExercise(exercise.id).then(rslt => console.log(`Exercise ${exercise.id} deleted successfully!`)).catch(err => console.log('Error deleting exercise. Try again.'))
       });
@@ -144,12 +135,10 @@ class App extends Component {
       this.setState({ savedCategoryView: false });
       this.setState({ previewView: true });
       
-      // console.log(e.target)
-      // console.log(e.target.getAttribute('category'))
     }
 
     const checkIfExerciseIsSaved = () => {
-// console.log(this.state.currentExercise)
+      // Checks if exercise has been saved within database
       const item = this.state.allSavedExercises.filter( exercise => exercise.exercise === this.state.currentExercise.name )
 
       if (item[0]) { 
@@ -160,28 +149,25 @@ class App extends Component {
     }
 
     const showIndExercise = async (e) => {
-      // console.log(e.target.getAttribute('item'));
+      // Gets information from certain exercise in order to display all information of it
       this.setState({ currentItemSaved: false });
+
       const item = this.state.categoryItems.filter( item => item.id === e.target.getAttribute('item'));
-      console.log(item)
   
       this.setState({ searchRsltsView: false });
       this.setState({ indExerciseView: true });
       await this.setState({ currentExercise: item[0] });
 
       checkIfExerciseIsSaved();
-      console.log('THis is what is working')
     }
 
     const saveItem = (category) => {
-      // Check if item has been saved before 
+      // Updates exercise or saves new exercise to DB with a certain category  
       let item;
       if (this.state.currentItemSaved) {
         item = this.state.currentSavedItemInfo;
         item.category = category;
 
-        console.log(item)
-        // Call API method to update Exercise
         APIS.updateExercise(item.id, item).then(rslt => alert(`Exercise ${item.id} updated successfully!`)).catch(err => alert('Error updating Exercise. Try again!'))
       } else {
         item = {
@@ -190,9 +176,7 @@ class App extends Component {
           idExercise: this.state.currentExercise.id,
           category: category
         }
-        console.log(item)
 
-        // Call API method to create Exercise
         APIS.createExercise(item).then(rslt => alert('Exercise created successfully!')).catch(err => alert('Error creating Exercise!'))
       }
       this.setState({ itemSaved: true });
@@ -200,7 +184,7 @@ class App extends Component {
     }
 
     const saveItemNewCat = (categoryName, categoryDesc) => {
-      console.log(this.state.currentExercise)
+      // Created new category item and saves it within DB and either creates or updates exercise being saved
       const exerciseObj = {
         exercise: this.state.currentExercise.name,
         gif: this.state.currentExercise.gifUrl,
@@ -213,9 +197,8 @@ class App extends Component {
         description: categoryDesc
       };
 
-      // REST API CALLS WILL GO HERE 
       if (this.state.currentItemSaved) {
-        APIS.updateExercise(this.state.currentSavedItemInfo.id, exerciseObj).then(msg => console.log('Exercise Saved'));
+        APIS.updateExercise(this.state.currentSavedItemInfo.id, exerciseObj).then(msg => console.log('Exercise Updated!'));
       } else {
         APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
       }
@@ -227,16 +210,13 @@ class App extends Component {
     }
 
     const savedItemToView = async (id) => {
-
+      // Gets information from certain exercise in order to display all information of it
       this.setState({ currentItemSaved: false });
       let item = await this.retrieveDBoptions(`https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`);
-
-      console.log(item)
 
       await this.setState({ currentExercise: item });
 
       checkIfExerciseIsSaved();
-      console.log('THis is what is workign')
 
       this.setState({ previewView: false });
       this.setState({ savedCategoryView: false });
@@ -245,20 +225,18 @@ class App extends Component {
     }
 
     const deleteItem = async (id, category) => {
+      // Deletes a certain exercise from DB 
       await APIS.deleteExercise(id).then(rslt => alert('Exercise deleted from DB.')).catch(err => alert('Error deleting exercise from DB.'));
 
       await APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
       let catItems = this.state.allSavedExercises.filter(exercise => exercise.category === category);
 
-      // this.loadItems();
       this.setState({ categoryItems: catItems });
-  
-      // window.location.reload();
     }
 
     const filterExerciseList = (e) => {
-      console.log(this.state.categoryItems)
+      // Filters list of exercise according to user input
       let filteredList;
       if (this.state.searchRsltsView) {
         filteredList = this.state.categoryItems.filter( item => item.name.toLowerCase().search(e.target.value) !== -1);
@@ -267,7 +245,6 @@ class App extends Component {
         filteredList = this.state.categoryItems.filter( item => item.exercise.toLowerCase().search(e.target.value) !== -1);
       }
 
-      // console.log(filteredList);
       this.setState({ currentCategoryItems: filteredList });
     }
 
@@ -312,9 +289,9 @@ class App extends Component {
 
             <div className={this.state.targetAreaListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
               {/* { this.state.appLoaded ? this.state.targetAreaList.map(item => 
-                <p className='indItem' item={item} key={item}>{item}</p>
+                <p className='indItem' area={item} item={item} key={item}>{item}</p>
               ) : null} */}
-              <p className='indItem' onClick={bringTargetAreaItemsToView}>Item</p>
+              <p className='indItem' area={'abs'} onClick={bringTargetAreaItemsToView}>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>
               <p className='indItem'>Item</p>

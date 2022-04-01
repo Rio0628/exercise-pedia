@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 
 const IndExercise = (props) => {
     
-    // let newCatView = false;
-    // let newCatInp = props.currentSavedItemInfo.category
     let category;
 
+    // Conditionals to set category value to first category of DB 
     if ( props.allCategories.length ) category = props.allCategories[0].name
     else category = '';
     
-    console.log(props.currentSavedItemInfo)
-    console.log(props.currentItemSaved)
-
+    // Conditional to set category as the set category value for saved exercise
     if (props.currentSavedItemInfo || props.itemSaved) { category = props.currentSavedItemInfo.category; console.log('this works')}
-    console.log(category);
 
     let [newCatView, setNewCatView] = useState(false), 
         [categoryName, setCategoryName] = useState(''), 
@@ -23,21 +19,15 @@ const IndExercise = (props) => {
     ;
 
     const checkInput = async (e) => {
-    
+        // Sets the input of select category element and displays certain styling for save button according to value of input
         if (e.target.value === category) {  setCurrentItemSaved(true); console.log('works') }
         else { setCurrentItemSaved(false); console.log('works 2') }
 
         await setNewCatInp(e.target.value);
-
-        console.log(e.target.value)
-        console.log(newCatInp)
-        console.log(category)
     }
 
     const itemSavedToNewCat = () => {
-
-        console.log('works')
-        
+        // Calls save item to new cat function and bring the new cat view out of view
         category = categoryName;
 
         props.saveItemNewCat(categoryName, categoryDesc); 
