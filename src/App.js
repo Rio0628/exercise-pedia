@@ -51,20 +51,20 @@ class App extends Component {
     APIS.getAllExercises().then(data => this.setState({ allSavedExercises: data.data}) )
 
     // Functions calls to retrieve sidebar info
-    // this.setState({ bodyPartList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
+    this.setState({ bodyPartList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/bodyPartList')  });
 
-    // this.setState({ targetAreaList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
+    this.setState({ targetAreaList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/targetList')  });
 
-    // this.setState({ equipmentList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
+    this.setState({ equipmentList: await this.retrieveDBoptions('https://exercisedb.p.rapidapi.com/exercises/equipmentList')  });
 
     this.setState({ appLoaded: true });
   }
 
   render () {
 
-    const bringBodypartItemsToView = async (e) => {
+    const bringBodypartItemsToView = async (area, e) => {
       // Bring the items from list from Exercise DB API and display them within search results view 
-      let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${'cardio'}`;
+      let url = `https://exercisedb.p.rapidapi.com/exercises/${area}/${e.target.getAttribute('list')}`;
 
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
       this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) });
@@ -277,38 +277,26 @@ class App extends Component {
             <p className={this.state.bodypartListInView ? 'bodypartBtn active' : 'bodypartBtn'} onClick={() => { this.setState({ bodypartListInView: !this.state.bodypartListInView})} }>Bodyparts</p>
   
             <div className={this.state.bodypartListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
-              {/* { this.state.appLoaded ? this.state.bodyPartList.map(item => 
-                <p className='indItem' item={item} key={item}>{item}</p>
-              ) : null} */}
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.bodyPartList.map(item => 
+                <p className='indItem' list={item} key={item} onClick={ (e) => bringBodypartItemsToView('bodyPart', e) }>{item}</p>
+              ) : null}
             </div>
 
             <p className={this.state.targetAreaListInView ? 'targetareasBtn active' : 'targetareasBtn'} onClick={() => { this.setState({ targetAreaListInView: !this.state.targetAreaListInView }); }}>Target Areas</p>
 
             <div className={this.state.targetAreaListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
-              {/* { this.state.appLoaded ? this.state.targetAreaList.map(item => 
-                <p className='indItem' area={item} item={item} key={item}>{item}</p>
-              ) : null} */}
-              <p className='indItem' area={'abs'} onClick={bringTargetAreaItemsToView}>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.targetAreaList.map(item => 
+                <p className='indItem' list={item} key={item} onClick={ (e) => bringBodypartItemsToView('target', e) }>{item}</p>
+              ) : null}
+              {/* <p className='indItem' list={'abs'} onClick={ (e) => bringBodypartItemsToView('target', e) }>Item</p> */}
             </div>
 
             <p className={this.state.equipmentListInView ? 'equipmentBtn active' : 'equipmentBtn'} onClick={() => { this.setState({ equipmentListInView: !this.state.equipmentListInView }); }}>Equipment</p>
 
             <div className={this.state.equipmentListInView ? 'itemsViewCntr active' : 'itemsViewCntr'}>
-              {/* { this.state.appLoaded ? this.state.equipmentList.map(item => 
-                <p className='indItem' item={item} key={item}>{item}</p>
-              ) : null} */}
-              <p className='indItem' onClick={bringEquipmentItemsToView}>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
-              <p className='indItem'>Item</p>
+              { this.state.appLoaded ? this.state.equipmentList.map(item => 
+                <p className='indItem' list={item} key={item} onClick={ (e) => bringBodypartItemsToView('equipment', e) }>{item}</p>
+              ) : null} 
             </div>
 
             <p className={this.state.categoriesListInView ? 'savedCategoriesBtn active' : 'savedCategoriesBtn'} onClick={() => { this.setState({ categoriesListInView: !this.state.categoriesListInView }); }}>Saved Categories</p>
