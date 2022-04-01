@@ -39,7 +39,6 @@ class App extends Component {
       console.error(error);
     });
 
-    // console.log(data)
     return data;
   }
 
@@ -70,6 +69,7 @@ class App extends Component {
 
       // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) });
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
@@ -84,6 +84,7 @@ class App extends Component {
 
       // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) }) ;
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
@@ -98,6 +99,7 @@ class App extends Component {
 
       // this.setState({ categorySearched: e.target.getAttribute('item') });
       this.setState({ categoryItems: await this.retrieveDBoptions(url) });
+      this.setState({ currentCategoryItems: await this.retrieveDBoptions(url) });
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
       this.setState({ savedCategoryView: false });
@@ -116,6 +118,7 @@ class App extends Component {
 
       this.setState({ currentCategory: category[0] });
       this.setState({ categoryItems: catItems });
+      this.setState({ currentCategoryItems: catItems });
       this.setState({ previewView: false });
       this.setState({ indExerciseView: false });
       this.setState({ searchRsltsView: false });
@@ -216,7 +219,7 @@ class App extends Component {
       } else {
         APIS.createExercise(exerciseObj).then(msg => console.log('Exercise Saved'));
       }
-      
+
       APIS.createCategory(newCat).then(msg => alert('New category created!'));
 
       APIS.getAllCategories().then(data => this.setState({ allSavedCategories: data.data }) );
@@ -254,6 +257,20 @@ class App extends Component {
       // window.location.reload();
     }
 
+    const filterExerciseList = (e) => {
+      console.log(this.state.categoryItems)
+      let filteredList;
+      if (this.state.searchRsltsView) {
+        filteredList = this.state.categoryItems.filter( item => item.name.toLowerCase().search(e.target.value) !== -1);
+      }
+      else {
+        filteredList = this.state.categoryItems.filter( item => item.exercise.toLowerCase().search(e.target.value) !== -1);
+      }
+
+      // console.log(filteredList);
+      this.setState({ currentCategoryItems: filteredList });
+    }
+
     return (
       <div className="container">
         
@@ -263,11 +280,9 @@ class App extends Component {
 
           <div className='menuBtn' onClick={() => this.sidebarAnim.play()} ><GiHamburgerMenu className='icon'/></div>
         
-          <div className='searchbarCntr'>
-            <input className='searchbar' type='text' placeholder='Search Exercise'/>
-
-            <div className='searchBtn' onClick={bringBodypartItemsToView}><AiOutlineSearch className='logo'/></div>
-          </div>
+          { this.state.searchRsltsView || this.state.savedCategoryView ? 
+            <input className='searchbar' type='text' placeholder='Filter Exercise' onChange={filterExerciseList}/>
+          : null}
 
         </div>
 
@@ -328,12 +343,11 @@ class App extends Component {
             </div>
           </div>
 
-          { this.state.searchRsltsView ? <SearchRslts items={this.state.categoryItems} showIndExercise={showIndExercise}/> : null }
+          { this.state.searchRsltsView ? <SearchRslts items={this.state.currentCategoryItems} showIndExercise={showIndExercise}/> : null }
 
           { this.state.indExerciseView ?  <IndExercise exercise={this.state.currentExercise} currentSavedItemInfo={this.state.currentSavedItemInfo} currentItemSaved={this.state.currentItemSaved} itemSaved={this.state.itemSaved} allCategories={this.state.allSavedCategories} saveItem={saveItem} saveItemNewCat={saveItemNewCat}/> : null }
 
-          { this.state.savedCategoryView ? <SavedCategory items={this.state.categoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
-
+          { this.state.savedCategoryView ? <SavedCategory items={this.state.currentCategoryItems} category={this.state.currentCategory} removeCategory={removeCategory} savedItemToView={savedItemToView} deleteItem={deleteItem}/> : null }
 
           {this.state.previewView ? 
             <div className='previewMSGcntr'>
